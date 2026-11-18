@@ -210,7 +210,10 @@ pixi run gen-cases NAME            # rewrite what a case expects; review with gi
 ```
 
 [SPEC.md](SPEC.md), section 7, describes the cases' files, for a runner
-of another implementation.
+of another implementation. The cases marked `only: builtin` (roots,
+symbolic links, `untrusted`, pandoc's sandbox) are the step built into
+libpandoc's, whose CI runs every case against it; `pixi run test` skips
+them.
 
 ## Why an attribute
 
@@ -229,8 +232,12 @@ of another implementation.
   filter: `pandoc -L panclude.lua ...`. It reads whatever pandoc's Lua can
   read.
 - The same step built into [libpandoc](https://github.com/ickc/libpandoc)
-  and its bindings, where it reads only inside the directories it is
-  given, so that a filter run after it needs no access to files at all.
+  and its bindings, named among the filters as `panclude` (`-F panclude`,
+  `"filters": ["panclude", ...]`), where it reads only inside its roots:
+  the main document's directory, or the directories it is given
+  (`{"type": "panclude", "roots": [...]}`), none under pandoc's sandbox
+  or for untrusted options unless given. So a filter run after it needs
+  no access to files at all.
 
 One specification and one set of cases hold for both.
 
