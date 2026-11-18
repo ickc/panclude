@@ -1,0 +1,7 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ CodeBlock ( "" , [] , [] ) "x"
+  , Div
+      ( "" , [] , [] )
+      [ Header 1 ( "part" , [] , [] ) [ Str "Part" ] ]
+  ]

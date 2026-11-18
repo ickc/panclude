@@ -1,0 +1,33 @@
+Pandoc
+  Meta
+    { unMeta =
+        fromList
+          [ ( "include-auto" , MetaBool True )
+          , ( "title"
+            , MetaInlines [ Str "Automatic" , Space , Str "shifts" ]
+            )
+          ]
+    }
+  [ Header 2 ( "part" , [] , [] ) [ Str "Part" ]
+  , Header 3 ( "below" , [] , [] ) [ Str "Below" ]
+  , Header 1 ( "one" , [] , [] ) [ Str "One" ]
+  , Header 3 ( "part" , [] , [] ) [ Str "Part" ]
+  , Header 4 ( "below" , [] , [] ) [ Str "Below" ]
+  , Header 2 ( "two" , [] , [] ) [ Str "Two" ]
+  , BlockQuote
+      [ Header 4 ( "part" , [] , [] ) [ Str "Part" ]
+      , Header 5 ( "below" , [] , [] ) [ Str "Below" ]
+      ]
+  , Header 2 ( "part" , [] , [] ) [ Str "Part" ]
+  , Header 3 ( "below" , [] , [] ) [ Str "Below" ]
+  , Header 1 ( "part" , [] , [] ) [ Str "Part" ]
+  , Header 2 ( "below" , [] , [] ) [ Str "Below" ]
+  , Header 2 ( "part" , [] , [] ) [ Str "Part" ]
+  , Header 3 ( "below" , [] , [] ) [ Str "Below" ]
+  , Header
+      1
+      ( "back-to-one" , [] , [] )
+      [ Str "Back" , Space , Str "to" , Space , Str "one" ]
+  , Header 3 ( "part" , [] , [] ) [ Str "Part" ]
+  , Header 4 ( "below" , [] , [] ) [ Str "Below" ]
+  ]

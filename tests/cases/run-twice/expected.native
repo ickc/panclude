@@ -1,0 +1,12 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Div
+      ( "" , [] , [] )
+      [ Header 2 ( "part" , [] , [] ) [ Str "Part" ]
+      , CodeBlock ( "" , [] , [] ) "code"
+      ]
+  , CodeBlock ( "" , [] , [ ( "startFrom" , "1" ) ] ) "code"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "missing.txt" ) ] )
+      "placeholder"
+  ]

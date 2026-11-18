@@ -1,0 +1,8 @@
+panclude: cannot include "x.txt" in doc.md: startLine="x" is not a whole number from 1
+panclude: cannot include "x.txt" in doc.md: startLine="0" is not a whole number from 1
+panclude: cannot include "x.txt" in doc.md: endLine="-1" is not a whole number from 1
+panclude: cannot include "x.txt" in doc.md: startLine="0x1" is not a whole number from 1
+panclude: cannot include "x.txt" in doc.md: end-line="1.0" is not a whole number from 1
+panclude: cannot include "x.txt" in doc.md: dedent="2.0" is not a whole number
+panclude: cannot include "x.txt" in doc.md: dedent="-1" is not a whole number
+panclude: cannot include "x.txt" in doc.md: dedent="" is not a whole number

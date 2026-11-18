@@ -1,0 +1,3 @@
+--lua-filter={panclude}
+--lua-filter={panclude}
+doc.md

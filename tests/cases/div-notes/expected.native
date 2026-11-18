@@ -1,0 +1,69 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "The"
+      , Space
+      , Str "main"
+      , Space
+      , Str "document\8217s"
+      , Space
+      , Str "note"
+      , Note
+          [ Para
+              [ Str "The" , Space , Str "main" , Space , Str "note." ]
+          ]
+      , Space
+      , Str "and"
+      , Space
+      , Link
+          ( "" , [] , [] )
+          [ Str "main" ]
+          ( "https://example.org/main" , "" )
+      , Space
+      , Str "reference."
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Para
+          [ Str "The"
+          , Space
+          , Str "included"
+          , Space
+          , Str "file\8217s"
+          , Space
+          , Str "note."
+          , Note
+              [ Para
+                  [ Str "The"
+                  , Space
+                  , Str "included"
+                  , Space
+                  , Str "note."
+                  ]
+              ]
+          , Space
+          , Str "Its"
+          , Space
+          , Str "own"
+          , Space
+          , Link
+              ( "" , [] , [] )
+              [ Str "reference" ]
+              ( "https://example.org/own" , "" )
+          , Space
+          , Str "resolves;"
+          , Space
+          , Str "the"
+          , Space
+          , Str "main"
+          , SoftBreak
+          , Str "document\8217s"
+          , Space
+          , Str "[main][]"
+          , Space
+          , Str "does"
+          , Space
+          , Str "not."
+          ]
+      ]
+  ]

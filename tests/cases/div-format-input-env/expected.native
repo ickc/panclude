@@ -1,0 +1,18 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Div
+      ( "" , [] , [] )
+      [ Para [ Str "text" ]
+      , Header
+          1
+          ( "a-heading-after-text" , [] , [] )
+          [ Str "A"
+          , Space
+          , Str "heading"
+          , Space
+          , Str "after"
+          , Space
+          , Str "text"
+          ]
+      ]
+  ]

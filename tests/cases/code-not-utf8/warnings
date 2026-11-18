@@ -1,0 +1,4 @@
+panclude: cannot include "latin1.txt" in doc.md: not UTF-8
+panclude: cannot include "bom-then-bad.txt" in doc.md: not UTF-8
+panclude: cannot include "latin1.txt" in doc.md: not UTF-8
+panclude: cannot include "latin1.txt" in doc.md: not UTF-8

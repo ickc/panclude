@@ -1,0 +1,111 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Header
+      1
+      ( "the-document" , [] , [] )
+      [ Str "The" , Space , Str "document" ]
+  , Header 1 ( "a" , [] , [] ) [ Str "A" ]
+  , Para
+      [ Str "Text"
+      , Space
+      , Str "of"
+      , Space
+      , Str "a,"
+      , Space
+      , Str "with"
+      , Space
+      , Str "an"
+      , Space
+      , Str "image"
+      , Space
+      , Image
+          ( "" , [] , [] ) [ Str "a" ] ( "chapters/img/a.png" , "" )
+      , Str "."
+      ]
+  , Header 2 ( "b" , [] , [] ) [ Str "B" ]
+  , Para
+      [ Str "Text"
+      , Space
+      , Str "of"
+      , Space
+      , Str "b,"
+      , Space
+      , Link
+          ( "" , [] , [] )
+          [ Str "linking" ]
+          ( "chapters/b2.md#top" , "" )
+      , Str "."
+      ]
+  , Header 2 ( "a" , [] , [] ) [ Str "A" ]
+  , Para
+      [ Str "Text"
+      , Space
+      , Str "of"
+      , Space
+      , Str "a,"
+      , Space
+      , Str "with"
+      , Space
+      , Str "an"
+      , Space
+      , Str "image"
+      , Space
+      , Image
+          ( "" , [] , [] ) [ Str "a" ] ( "chapters/img/a.png" , "" )
+      , Str "."
+      ]
+  , Header
+      1
+      ( "an-org-heading" , [] , [] )
+      [ Str "An" , Space , Str "org" , Space , Str "heading" ]
+  , Para
+      [ Str "Some"
+      , Space
+      , Emph [ Str "italic" ]
+      , Space
+      , Str "text."
+      ]
+  , Para
+      [ Str "An"
+      , Space
+      , Str "org"
+      , Space
+      , Str "file"
+      , Space
+      , Str "without"
+      , Space
+      , Str "a"
+      , Space
+      , Str "format:"
+      , Space
+      , Str "include-files"
+      , Space
+      , Str "reads"
+      , Space
+      , Str "it"
+      , Space
+      , Str "as"
+      , Space
+      , Str "markdown."
+      ]
+  , Header
+      1
+      ( "a-markdown-heading-in-a-.org-file" , [] , [] )
+      [ Str "a"
+      , Space
+      , Str "markdown"
+      , Space
+      , Str "heading"
+      , Space
+      , Str "in"
+      , Space
+      , Str "a"
+      , Space
+      , Str ".org"
+      , Space
+      , Str "file"
+      ]
+  , CodeBlock
+      ( "" , [ "python" ] , [] )
+      "print(\"other code blocks are left alone\")"
+  ]

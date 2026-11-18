@@ -1,0 +1,48 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "document"
+      , Space
+      , Str "in"
+      , Space
+      , Str "a"
+      , Space
+      , Str "subdirectory"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "working"
+      , Space
+      , Str "directory:"
+      , Space
+      , Str "relative"
+      , Space
+      , Str "paths"
+      , SoftBreak
+      , Str "start"
+      , Space
+      , Str "at"
+      , Space
+      , Str "its"
+      , Space
+      , Str "own"
+      , Space
+      , Str "directory."
+      ]
+  , CodeBlock ( "" , [] , [] ) "sub/x.txt"
+  , Div
+      ( "" , [] , [] )
+      [ CodeBlock ( "" , [] , [] ) "sub/y.txt"
+      , CodeBlock
+          ( "" , [] , [ ( "include" , "missing.txt" ) ] )
+          "placeholder"
+      , Para [ Image ( "" , [] , [] ) [] ( "pic.png" , "" ) ]
+      ]
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "missing.txt" ) ] )
+      "placeholder"
+  ]

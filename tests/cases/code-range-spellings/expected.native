@@ -1,0 +1,43 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "The"
+      , Space
+      , Str "hyphenated"
+      , Space
+      , Str "spellings;"
+      , Space
+      , Str "startFrom"
+      , Space
+      , Str "is"
+      , Space
+      , Str "still"
+      , Space
+      , Str "set."
+      ]
+  , CodeBlock
+      ( "" , [] , [ ( "startFrom" , "2" ) ] ) "line 2\nline 3"
+  , Para
+      [ Str "Both"
+      , Space
+      , Str "spellings:"
+      , Space
+      , Str "the"
+      , Space
+      , Str "hyphenated"
+      , Space
+      , Str "one"
+      , Space
+      , Str "wins,"
+      , Space
+      , Str "and"
+      , Space
+      , Str "both"
+      , Space
+      , Str "are"
+      , Space
+      , Str "removed."
+      ]
+  , CodeBlock
+      ( "" , [] , [ ( "startFrom" , "5" ) ] ) "line 5\nline 6"
+  ]

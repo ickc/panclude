@@ -1,0 +1,61 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "Each"
+      , Space
+      , Str "failure"
+      , Space
+      , Str "leaves"
+      , Space
+      , Str "the"
+      , Space
+      , Str "block"
+      , Space
+      , Str "exactly"
+      , Space
+      , Str "as"
+      , Space
+      , Str "it"
+      , Space
+      , Str "was,"
+      , Space
+      , Str "with"
+      , Space
+      , Str "a"
+      , Space
+      , Str "warning."
+      ]
+  , CodeBlock
+      ( "id"
+      , [ "c" ]
+      , [ ( "include" , "missing.txt" )
+        , ( "startLine" , "1" )
+        , ( "dedent" , "2" )
+        , ( "data-x" , "y" )
+        ]
+      )
+      "a missing file"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "a-directory" ) ] )
+      "a directory"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "https://example.org/x.txt" ) ]
+      )
+      "a URL"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "file:a-directory/file.txt" ) ]
+      )
+      "a file URL"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "" ) ] ) "an empty path"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "missing.txt" ) , ( "raw" , "latex" ) ]
+      )
+      "the raw form"
+  ]

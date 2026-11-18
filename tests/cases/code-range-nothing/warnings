@@ -1,0 +1,4 @@
+panclude: cannot include "lines.txt" in doc.md: the range selects none of the file's 10 lines
+panclude: cannot include "lines.txt" in doc.md: the range selects none of the file's 10 lines
+panclude: cannot include "empty.txt" in doc.md: the range selects none of the file's 0 lines
+panclude: cannot include "empty.txt" in doc.md: the range selects none of the file's 0 lines

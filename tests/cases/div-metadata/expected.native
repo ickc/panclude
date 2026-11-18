@@ -1,0 +1,36 @@
+Pandoc
+  Meta
+    { unMeta =
+        fromList
+          [ ( "title"
+            , MetaInlines
+                [ Str "The" , Space , Str "main" , Space , Str "title" ]
+            )
+          ]
+    }
+  [ Para
+      [ Str "The"
+      , Space
+      , Str "included"
+      , Space
+      , Str "document\8217s"
+      , Space
+      , Str "metadata"
+      , Space
+      , Str "is"
+      , Space
+      , Str "dropped."
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Para
+          [ Str "The"
+          , Space
+          , Str "included"
+          , Space
+          , Str "file\8217s"
+          , Space
+          , Str "text."
+          ]
+      ]
+  ]

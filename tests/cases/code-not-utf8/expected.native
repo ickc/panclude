@@ -1,0 +1,48 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "Text"
+      , Space
+      , Str "that"
+      , Space
+      , Str "is"
+      , Space
+      , Str "not"
+      , Space
+      , Str "UTF-8"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "failure:"
+      , Space
+      , Str "the"
+      , Space
+      , Str "element"
+      , Space
+      , Str "is"
+      , Space
+      , Str "left"
+      , Space
+      , Str "as"
+      , Space
+      , Str "it"
+      , Space
+      , Str "was."
+      ]
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "latin1.txt" ) ] ) "placeholder"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "bom-then-bad.txt" ) ] )
+      "placeholder"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "latin1.txt" ) , ( "raw" , "latex" ) ]
+      )
+      "placeholder"
+  , Div
+      ( "" , [] , [ ( "include" , "latin1.txt" ) ] )
+      [ Para [ Str "placeholder" ] ]
+  ]

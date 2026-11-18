@@ -1,0 +1,25 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "Line"
+      , Space
+      , Str "endings"
+      , Space
+      , Str "become"
+      , Space
+      , Code ( "" , [] , [] ) "\\n"
+      , Str ":"
+      , Space
+      , Str "CRLF,"
+      , Space
+      , Str "and"
+      , Space
+      , Str "CR"
+      , Space
+      , Str "alone."
+      ]
+  , CodeBlock ( "" , [] , [] ) "a\nb"
+  , CodeBlock ( "" , [] , [ ( "startFrom" , "2" ) ] ) "b"
+  , CodeBlock ( "" , [] , [] ) "a\nb"
+  , CodeBlock ( "" , [] , [ ( "startFrom" , "2" ) ] ) "b\nc"
+  ]

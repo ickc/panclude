@@ -1,0 +1,26 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "include-files"
+      , Space
+      , Str "opens"
+      , Space
+      , Str "these"
+      , Space
+      , Str "from"
+      , Space
+      , Str "the"
+      , Space
+      , Str "working"
+      , Space
+      , Str "directory,"
+      , Space
+      , Str "above"
+      , Space
+      , Str "this"
+      , Space
+      , Str "file\8217s."
+      ]
+  , Para [ Str "In" , Space , Str "sub/x.md." ]
+  , Para [ Str "In" , Space , Str "other/y.md." ]
+  ]

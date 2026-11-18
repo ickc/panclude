@@ -1,0 +1,30 @@
+[workspace]
+name = "panclude"
+version = "0.1.0"
+description = "One include attribute for pandoc documents, as a Lua filter"
+authors = ["Kolen Cheung <christian.kolen@gmail.com>"]
+channels = ["conda-forge"]
+platforms = ["linux-64", "linux-aarch64", "osx-64", "osx-arm64"]
+
+[dependencies]
+pandoc = ">=3.2,<4"
+
+[tasks]
+# The suite runs under pandoc's bundled Lua, so pandoc is the only
+# dependency. spec/busted_shim.lua stands in for busted.
+test = { cmd = "pandoc lua spec/run.lua", description = "Run all specs" }
+test-cases = { cmd = "pandoc lua spec/run.lua spec/cases_spec.lua", description = "Run the conformance cases in tests/cases" }
+test-port = { cmd = "pandoc lua spec/run.lua spec/port_spec.lua", description = "Test the porting filter for include-files' blocks" }
+gen-cases = { cmd = "pandoc lua spec/gen_cases.lua", description = "Rewrite what the cases expect from what the filter does: pixi run gen-cases [NAME...]; review with git diff" }
+
+# The oldest pandoc supported: 3.2, the first with pandoc.log, through
+# which the filter warns. This environment exists for CI, so it is linux
+# only.
+[feature.pandoc-min]
+platforms = ["linux-64"]
+
+[feature.pandoc-min.dependencies]
+pandoc = "==3.2"
+
+[environments]
+pandoc-min = { features = ["pandoc-min"] }

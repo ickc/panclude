@@ -1,0 +1,232 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "The"
+      , Space
+      , Str "main"
+      , Space
+      , Str "document\8217s"
+      , Space
+      , Str "own"
+      , Space
+      , Str "targets"
+      , Space
+      , Str "are"
+      , Space
+      , Str "not"
+      , Space
+      , Str "rewritten:"
+      , Space
+      , Image ( "" , [] , [] ) [] ( "img.png" , "" )
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Para
+          [ Str "Relative"
+          , Space
+          , Str "paths,"
+          , Space
+          , Str "rewritten"
+          , Space
+          , Str "to"
+          , Space
+          , Str "name"
+          , Space
+          , Str "the"
+          , Space
+          , Str "same"
+          , Space
+          , Str "file"
+          , Space
+          , Str "from"
+          , Space
+          , Str "the"
+          , Space
+          , Str "main"
+          , Space
+          , Str "document\8217s"
+          , SoftBreak
+          , Str "directory:"
+          , SoftBreak
+          , Image ( "" , [] , [] ) [] ( "chapter/img.png" , "" )
+          , SoftBreak
+          , Image ( "" , [] , [] ) [] ( "chapter/img.png" , "" )
+          , SoftBreak
+          , Image ( "" , [] , [] ) [] ( "chapter/../top.png" , "" )
+          , SoftBreak
+          , Image ( "" , [] , [] ) [] ( "chapter/sub/deep.png" , "" )
+          , SoftBreak
+          , Link
+              ( "" , [] , [] )
+              [ Str "a" , Space , Str "link" ]
+              ( "chapter/other.md#section" , "" )
+          , SoftBreak
+          , Link
+              ( "" , [] , [] )
+              [ Str "a"
+              , Space
+              , Str "link"
+              , Space
+              , Str "with"
+              , Space
+              , Str "a"
+              , Space
+              , Str "title"
+              ]
+              ( "chapter/other.md" , "the title" )
+          , SoftBreak
+          , Link
+              ( "" , [] , [] )
+              [ Str "a" , Space , Str "bare" , Space , Str "word" ]
+              ( "chapter/page" , "" )
+          ]
+      , Para
+          [ Str "Not"
+          , Space
+          , Str "relative,"
+          , Space
+          , Str "and"
+          , Space
+          , Str "left"
+          , Space
+          , Str "alone:"
+          , SoftBreak
+          , Link
+              ( "" , [] , [] )
+              [ Str "a" , Space , Str "URL" ]
+              ( "https://example.org/x" , "" )
+          , SoftBreak
+          , Link
+              ( "" , [] , [] )
+              [ Str "mail" ]
+              ( "mailto:a@example.org" , "" )
+          , SoftBreak
+          , Image
+              ( "" , [] , [] )
+              [ Str "data" ]
+              ( "data:image/png;base64,AAAA" , "" )
+          , SoftBreak
+          , Link
+              ( "" , [] , [] )
+              [ Str "absolute" ]
+              ( "/abs/path.md" , "" )
+          , SoftBreak
+          , Link
+              ( "" , [] , [] )
+              [ Str "network" , Space , Str "path" ]
+              ( "//example.org/x" , "" )
+          , SoftBreak
+          , Link
+              ( "" , [] , [] )
+              [ Str "a" , Space , Str "Windows" , Space , Str "drive" ]
+              ( "C:/x.md" , "" )
+          , SoftBreak
+          , Link
+              ( "" , [] , [] )
+              [ Str "a" , Space , Str "fragment" ]
+              ( "#section" , "" )
+          , SoftBreak
+          , Link
+              ( "" , [] , [] )
+              [ Str "a" , Space , Str "query" ]
+              ( "?q=1" , "" )
+          , SoftBreak
+          , Link ( "" , [] , [] ) [ Str "empty" ] ( "" , "" )
+          ]
+      , Para
+          [ Str "Raw"
+          , Space
+          , Str "HTML"
+          , Space
+          , Str "is"
+          , Space
+          , Str "not"
+          , Space
+          , Str "looked"
+          , Space
+          , Str "into:"
+          , Space
+          , RawInline (Format "html") "<img src=\"raw.png\">"
+          ]
+      , Div
+          ( "" , [] , [] )
+          [ Para
+              [ Str "Nested"
+              , Space
+              , Str "twice:"
+              , Space
+              , Image
+                  ( "" , [] , [] ) [] ( "chapter/deeper/b.png" , "" )
+              , Space
+              , Str "and"
+              , Space
+              , Link
+                  ( "" , [] , [] )
+                  [ Str "up" ]
+                  ( "chapter/deeper/../up.md" , "" )
+              , Str "."
+              ]
+          ]
+      , Para
+          [ Str "A"
+          , Space
+          , Str "failure"
+          , Space
+          , Str "here"
+          , Space
+          , Str "is"
+          , Space
+          , Str "left"
+          , Space
+          , Str "as"
+          , Space
+          , Str "it"
+          , Space
+          , Str "was,"
+          , Space
+          , Str "but"
+          , Space
+          , Str "for"
+          , Space
+          , Str "its"
+          , Space
+          , Str "path,"
+          , Space
+          , Str "which"
+          , Space
+          , Str "still"
+          , Space
+          , Str "names"
+          , Space
+          , Str "the"
+          , SoftBreak
+          , Str "same"
+          , Space
+          , Str "file:"
+          ]
+      , Div
+          ( "" , [] , [ ( "include" , "chapter/missing.md" ) ] )
+          [ Para [ Str "placeholder" ] ]
+      , CodeBlock
+          ( "" , [] , [ ( "include" , "chapter/missing.txt" ) ] )
+          "placeholder"
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Para
+          [ Str "Nested"
+          , Space
+          , Str "twice:"
+          , Space
+          , Image ( "" , [] , [] ) [] ( "chapter/deeper/b.png" , "" )
+          , Space
+          , Str "and"
+          , Space
+          , Link
+              ( "" , [] , [] )
+              [ Str "up" ]
+              ( "chapter/deeper/../up.md" , "" )
+          , Str "."
+          ]
+      ]
+  ]

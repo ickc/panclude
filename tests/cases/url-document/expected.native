@@ -1,0 +1,38 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "document"
+      , Space
+      , Str "read"
+      , Space
+      , Str "from"
+      , Space
+      , Str "a"
+      , Space
+      , Str "URL"
+      , Space
+      , Str "has"
+      , Space
+      , Str "no"
+      , Space
+      , Str "directory"
+      , Space
+      , Str "to"
+      , Space
+      , Str "start"
+      , Space
+      , Str "from:"
+      , Space
+      , Str "no"
+      , Space
+      , Str "file"
+      , Space
+      , Str "is"
+      , SoftBreak
+      , Str "included."
+      ]
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "x.txt" ) ] ) "placeholder"
+  ]

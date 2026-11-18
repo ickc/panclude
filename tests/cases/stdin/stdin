@@ -1,0 +1,9 @@
+A document on standard input: relative paths start at the working
+directory.
+
+```{include="src/x.txt"}
+```
+
+```{include="missing.txt"}
+placeholder
+```

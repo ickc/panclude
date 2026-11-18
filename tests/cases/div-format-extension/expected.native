@@ -1,0 +1,185 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "Without"
+      , Space
+      , Code ( "" , [] , [] ) "format"
+      , Str ","
+      , Space
+      , Str "a"
+      , Space
+      , Str "file"
+      , Space
+      , Str "whose"
+      , Space
+      , Str "extension"
+      , Space
+      , Str "names"
+      , Space
+      , Str "a"
+      , Space
+      , Str "format"
+      , Space
+      , Str "other"
+      , Space
+      , Str "than"
+      , SoftBreak
+      , Str "markdown"
+      , Space
+      , Str "is"
+      , Space
+      , Str "read"
+      , Space
+      , Str "in"
+      , Space
+      , Str "that"
+      , Space
+      , Str "format,"
+      , Space
+      , Str "with"
+      , Space
+      , Str "pandoc\8217s"
+      , Space
+      , Str "defaults."
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Header
+          1
+          ( "an-rst-title" , [] , [] )
+          [ Str "An" , Space , Str "rst" , Space , Str "title" ]
+      , Para
+          [ Str "Some"
+          , Space
+          , Emph [ Str "emphasis" ]
+          , Space
+          , Str "in"
+          , Space
+          , Str "rst."
+          ]
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Header
+          1
+          ( "an-org-heading" , [] , [] )
+          [ Str "An" , Space , Str "org" , Space , Str "heading" ]
+      , Para
+          [ Str "Some"
+          , Space
+          , Emph [ Str "italic" ]
+          , Space
+          , Str "text."
+          ]
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Header
+          2
+          ( "an-html-heading" , [] , [] )
+          [ Str "An" , Space , Str "HTML" , Space , Str "heading" ]
+      , Para
+          [ Str "A" , Space , Emph [ Str "paragraph" ] , Str "." ]
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Header
+          1
+          ( "a-latex-section" , [] , [] )
+          [ Str "A" , Space , Str "LaTeX" , Space , Str "section" ]
+      , Para
+          [ Str "Some" , Space , Emph [ Str "emphasis" ] , Str "." ]
+      ]
+  , Para
+      [ Str "Markdown,"
+      , Space
+      , Str "and"
+      , Space
+      , Str "a"
+      , Space
+      , Str "file"
+      , Space
+      , Str "with"
+      , Space
+      , Str "no"
+      , Space
+      , Str "extension"
+      , Space
+      , Str "pandoc"
+      , Space
+      , Str "knows,"
+      , Space
+      , Str "are"
+      , Space
+      , Str "read"
+      , Space
+      , Str "as"
+      , Space
+      , Str "the"
+      , Space
+      , Str "main"
+      , SoftBreak
+      , Str "document"
+      , Space
+      , Str "is."
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Header
+          1
+          ( "a-heading-in-a-.txt-file" , [] , [] )
+          [ Str "A"
+          , Space
+          , Str "heading"
+          , Space
+          , Str "in"
+          , Space
+          , Str "a"
+          , Space
+          , Str ".txt"
+          , Space
+          , Str "file"
+          ]
+      , Para
+          [ Str "It"
+          , Space
+          , Str "reads"
+          , Space
+          , Str "as"
+          , Space
+          , Str "markdown,"
+          , Space
+          , Str "which"
+          , Space
+          , Str "pandoc"
+          , Space
+          , Str "takes"
+          , Space
+          , Str ".txt"
+          , Space
+          , Str "for."
+          ]
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Header
+          1
+          ( "a-heading-in-a-file-with-no-extension" , [] , [] )
+          [ Str "A"
+          , Space
+          , Str "heading"
+          , Space
+          , Str "in"
+          , Space
+          , Str "a"
+          , Space
+          , Str "file"
+          , Space
+          , Str "with"
+          , Space
+          , Str "no"
+          , Space
+          , Str "extension"
+          ]
+      ]
+  ]

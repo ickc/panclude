@@ -1,0 +1,1 @@
+panclude: cannot include "x.txt" in file:doc.md: the document is a URL, so no file is included

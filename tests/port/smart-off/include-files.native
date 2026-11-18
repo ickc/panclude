@@ -1,0 +1,55 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "The"
+      , Space
+      , Str "document"
+      , Space
+      , Str "is"
+      , Space
+      , Str "read"
+      , Space
+      , Str "without"
+      , Space
+      , Str "smart;"
+      , Space
+      , Str "include-files"
+      , Space
+      , Str "still"
+      , Space
+      , Str "reads"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file"
+      , SoftBreak
+      , Str "with"
+      , Space
+      , Str "pandoc's"
+      , Space
+      , Str "markdown"
+      , Space
+      , Str "defaults,"
+      , Space
+      , Str "so"
+      , Space
+      , Str "the"
+      , Space
+      , Str "port"
+      , Space
+      , Str "writes"
+      , Space
+      , Str "format=\"markdown\"."
+      ]
+  , Para
+      [ Str "He"
+      , Space
+      , Str "said"
+      , Space
+      , Quoted DoubleQuote [ Str "hello" ]
+      , Space
+      , Str "\8211"
+      , Space
+      , Str "twice."
+      ]
+  ]

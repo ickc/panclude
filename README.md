@@ -23,8 +23,194 @@ panclude fills it in:
 - **A div** is filled with the file read as a document.
 
 **Status: a draft.** [SPEC.md](SPEC.md) is the specification being worked
-out; the Lua filter and its test cases are being written. Nothing is
-released yet.
+out; `panclude.lua` implements it, and `tests/cases/` holds the cases
+both implementations must pass. Nothing is released yet.
+
+## Usage
+
+### Install
+
+panclude is one Lua file with no dependencies. It needs pandoc 3.2 or
+later, and stops with an error on an older one.
+
+```sh
+curl -LO https://raw.githubusercontent.com/ickc/panclude/main/panclude.lua
+```
+
+### Run it first
+
+```sh
+pandoc -L panclude.lua -L other-filter.lua doc.md -o doc.html
+```
+
+Put it before every other filter, so that each of them sees the included
+content as if it had been written in the document. It handles an element
+once: a second run changes nothing but retries what failed.
+
+### A code block: a file's text
+
+````markdown
+```{.python .numberLines include="src/main.py" startLine=10 endLine=24 dedent=4}
+shown when panclude does not run
+```
+````
+
+The block's text becomes the file's text, verbatim (as UTF-8, with `\n`
+line endings, without its final newline). `startLine` and `endLine`
+(also `start-line`, `end-line`) choose lines, counted from 1, both
+included; `dedent=N` removes up to N leading spaces of each line. These
+attributes and `include` go; everything else stays, and `startFrom` is
+set to `startLine` unless the block has its own, so that `.numberLines`
+counts as the source does. A filter owning the class sees an ordinary
+block:
+
+````markdown
+```{.table include="data.csv"}
+```
+````
+
+### A code block with `raw`: raw content
+
+````markdown
+```{include="preamble.tex" raw="latex"}
+```
+````
+
+The block becomes a raw block of that format, holding the file's text
+(ranges and `dedent` as above).
+
+### A div: a file read as a document
+
+```markdown
+::: {#intro .chapter include="chapters/intro.md" shift-heading-level-by=1}
+shown when panclude does not run
+:::
+```
+
+The file's blocks fill the div; the div keeps its identifier, classes and
+other attributes. The file is read
+
+- as the div's `format` says (as `-f` takes it: `format="org"`,
+  `format="markdown-smart"`);
+- else in the format its extension names, if not markdown (`.rst`,
+  `.org`, `.html`, `.tex`, ...);
+- else as markdown, with the main document's extensions. Under stock
+  pandoc a Lua filter is not told the main reader's name: if your
+  document is not pandoc's markdown, give `format` (a libpandoc host
+  tells the filter, in `PANDOC_INPUT_FORMAT`).
+
+`shift-heading-level-by=N` shifts its headings (below level 1 a heading
+becomes a paragraph). Its metadata is dropped; its footnotes and
+reference links are its own. Its own includes are resolved too, each
+from its file's directory, 32 deep at most; a file including itself,
+directly or not, is a failure (below). An image's or link's relative path in it
+is rewritten to name the same file from the main document's directory:
+`![](fig.png)` in `chapters/intro.md` becomes `![](chapters/fig.png)`.
+URLs, absolute paths and `#fragments` are left alone.
+
+### Paths
+
+A relative path starts at the directory of the file holding the element:
+the main document's (its first input file's, with several), the
+working directory for standard input, an included file's for its own
+includes. A path is used as written: no globs, no `~`, no URLs.
+
+### Failures
+
+A missing file, a range that selects nothing, text that is not UTF-8, a
+format pandoc cannot read, a cycle: the element is left exactly as it
+was, placeholder and all, and a warning goes to pandoc's log, naming the
+path, the file holding it and the reason, never the file's content:
+
+```
+[WARNING] Scripting warning at panclude.lua line 157 column 1: panclude: cannot include "src/mian.py" in doc.md: not found
+```
+
+The document degrades as it would without panclude. To make a failure
+an error, run pandoc with `--fail-if-warnings`.
+
+### What it does not do
+
+- Named snippets, inline code and spans: not in this version.
+- URLs, binary formats (docx, xlsx, ...), metadata from a file (use
+  `--metadata-file`), text spliced in before pandoc parses the document.
+- **It does not restrict what it reads.** The filter reads whatever
+  pandoc's Lua can read: any file the process can, `../` and absolute
+  paths included. Run it only on documents you trust, or run pandoc
+  where it can read only what it may. The step built into libpandoc
+  reads only inside the directories it is given.
+
+### From pandoc-ext/include-code-files
+
+Its documents work unchanged and give the same result, but for two
+deliberate differences:
+
+- **A relative path starts at the including file's directory**, not at
+  pandoc's working directory. The two are the same when you run pandoc
+  from the document's directory.
+- **`dedent=N` removes up to N leading spaces of a line.**
+  include-code-files removes every space among a line's first N
+  characters, even after other text (`x   y` with `dedent=4` becomes
+  `xy`).
+
+And in corners: panclude drops the file's final newline (include-code-files
+keeps it, which shows as an empty last line in HTML) and any CR, keeps a
+`startFrom` the block already has, and on a failure leaves the block as it
+was where include-code-files empties it.
+
+### From pandoc-ext/include-files
+
+panclude does not read include-files' block of file names. The porting
+filter `tools/port-include-files.lua` rewrites a document's blocks into
+panclude's divs, one a file, with the automatic heading shift
+(`include-auto`) written out as `shift-heading-level-by`:
+
+```sh
+pandoc doc.md -s -f markdown -t markdown -L tools/port-include-files.lua -o ported.md
+```
+
+````markdown
+```{.include shift-heading-level-by=1}       ::: {include="a.md" shift-heading-level-by=1}
+a.md                                    →    :::
+// a comment
+b.md                                         ::: {include="b.md" shift-heading-level-by=1}
+```                                          :::
+````
+
+- Run it from the directory you ran pandoc from with include-files:
+  include-files opens a name from the working directory, and the port
+  rewrites it to start at the document's directory.
+- An included file with blocks of its own: port it too, from its own
+  directory (include-files reads its names from there), with
+  `-M include-auto` if the main document had it.
+- Without `format`, include-files reads every file as markdown with
+  pandoc's default extensions; the port writes `format="markdown"` where
+  panclude would read the file otherwise (a `.org` file, a document read
+  with other extensions).
+- Each block ported is listed on stderr with the divs it became, so that
+  a document pandoc's markdown writer would damage can be ported by hand
+  (`-o /dev/null`).
+
+The result differs from include-files' in what panclude does
+differently: each file's content is in a div; an image's or link's path
+is rewritten from the document's directory, not the working directory,
+and a URL in an image is left alone (include-files rewrites
+`https://...` images as paths); a heading shifted below level 1 becomes
+a paragraph.
+
+## Development
+
+The tests run under pandoc's bundled Lua, so pandoc is the only
+dependency; [pixi](https://pixi.sh) provides it:
+
+```sh
+pixi run test                      # every spec, with the latest pandoc
+pixi run -e pandoc-min test        # with the oldest supported, pandoc 3.2
+pixi run gen-cases NAME            # rewrite what a case expects; review with git diff
+```
+
+[SPEC.md](SPEC.md), section 7, describes the cases' files, for a runner
+of another implementation.
 
 ## Why an attribute
 

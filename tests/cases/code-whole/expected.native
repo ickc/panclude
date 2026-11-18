@@ -1,0 +1,54 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "code"
+      , Space
+      , Str "block"
+      , Space
+      , Str "takes"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "text:"
+      , Space
+      , Str "its"
+      , Space
+      , Str "final"
+      , Space
+      , Str "newline"
+      , Space
+      , Str "dropped,"
+      , Space
+      , Str "the"
+      , Space
+      , Str "rest"
+      , SoftBreak
+      , Str "verbatim."
+      , Space
+      , Str "The"
+      , Space
+      , Str "block\8217s"
+      , Space
+      , Str "identifier,"
+      , Space
+      , Str "classes"
+      , Space
+      , Str "and"
+      , Space
+      , Str "other"
+      , Space
+      , Str "attributes"
+      , Space
+      , Str "stay."
+      ]
+  , CodeBlock
+      ( "listing"
+      , [ "python" , "numberLines" ]
+      , [ ( "data-note" , "kept" ) ]
+      )
+      "def hello():\n    print(\"na\239ve caf\233\")\n\n\nhello()"
+  ]

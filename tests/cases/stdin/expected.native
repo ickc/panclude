@@ -1,0 +1,32 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "document"
+      , Space
+      , Str "on"
+      , Space
+      , Str "standard"
+      , Space
+      , Str "input:"
+      , Space
+      , Str "relative"
+      , Space
+      , Str "paths"
+      , Space
+      , Str "start"
+      , Space
+      , Str "at"
+      , Space
+      , Str "the"
+      , Space
+      , Str "working"
+      , SoftBreak
+      , Str "directory."
+      ]
+  , CodeBlock ( "" , [] , [] ) "from src/x.txt"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "missing.txt" ) ] )
+      "placeholder"
+  ]

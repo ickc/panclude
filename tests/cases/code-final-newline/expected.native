@@ -1,0 +1,52 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "Without"
+      , Space
+      , Str "a"
+      , Space
+      , Str "final"
+      , Space
+      , Str "newline,"
+      , Space
+      , Str "the"
+      , Space
+      , Str "last"
+      , Space
+      , Str "line"
+      , Space
+      , Str "is"
+      , Space
+      , Str "still"
+      , Space
+      , Str "a"
+      , Space
+      , Str "line."
+      ]
+  , CodeBlock ( "" , [] , [] ) "a\nb"
+  , CodeBlock ( "" , [] , [ ( "startFrom" , "2" ) ] ) "b"
+  , Para
+      [ Str "An"
+      , Space
+      , Str "empty"
+      , Space
+      , Str "last"
+      , Space
+      , Str "line"
+      , Space
+      , Str "stays:"
+      , Space
+      , Str "only"
+      , Space
+      , Str "the"
+      , Space
+      , Str "final"
+      , Space
+      , Str "newline"
+      , Space
+      , Str "is"
+      , Space
+      , Str "dropped."
+      ]
+  , CodeBlock ( "" , [] , [] ) "a\nb\n"
+  ]

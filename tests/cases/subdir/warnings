@@ -1,0 +1,2 @@
+panclude: cannot include "missing.txt" in sub/ch.md: not found
+panclude: cannot include "missing.txt" in sub/doc.md: not found

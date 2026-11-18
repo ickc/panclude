@@ -1,0 +1,62 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Header
+      1
+      ( "a-heading" , [] , [ ( "include" , "x.md" ) ] )
+      [ Str "A" , Space , Str "heading" ]
+  , Para
+      [ Str "A"
+      , Space
+      , Span
+          ( "" , [] , [ ( "include" , "x.md" ) ] ) [ Str "span" ]
+      , Str ","
+      , Space
+      , Code
+          ( "" , [] , [ ( "include" , "x.md" ) ] ) "inline code"
+      , Str ","
+      , SoftBreak
+      , Image
+          ( "" , [] , [ ( "include" , "x.md" ) ] )
+          [ Str "an" , Space , Str "image" ]
+          ( "pic.png" , "" )
+      , Space
+      , Str "and"
+      , Space
+      , Link
+          ( "" , [] , [ ( "include" , "x.md" ) ] )
+          [ Str "a" , Space , Str "link" ]
+          ( "y.md" , "" )
+      , Str "."
+      ]
+  , Para
+      [ Str "The"
+      , Space
+      , Str "step"
+      , Space
+      , Str "handles"
+      , Space
+      , Str "code"
+      , Space
+      , Str "blocks"
+      , Space
+      , Str "and"
+      , Space
+      , Str "divs"
+      , Space
+      , Str "only:"
+      , Space
+      , Str "these"
+      , Space
+      , Str "are"
+      , Space
+      , Str "left"
+      , Space
+      , Str "alone,"
+      , Space
+      , Str "without"
+      , SoftBreak
+      , Str "a"
+      , Space
+      , Str "warning."
+      ]
+  ]

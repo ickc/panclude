@@ -1,0 +1,84 @@
+version: 7
+platforms:
+- name: linux-64
+  virtual-packages:
+  - __unix=0
+  - __linux=4.18
+  - __glibc=2.28
+  - __archspec=0=x86_64
+- name: linux-aarch64
+  virtual-packages:
+  - __unix=0
+  - __linux=4.18
+  - __glibc=2.28
+  - __archspec=0=aarch64
+- name: osx-64
+  virtual-packages:
+  - __unix=0
+  - __osx=13.0
+  - __archspec=0=x86_64
+- name: osx-arm64
+  virtual-packages:
+  - __unix=0
+  - __osx=13.0
+  - __archspec=0=m1
+environments:
+  default:
+    channels:
+    - url: https://conda.anaconda.org/conda-forge/
+    packages:
+      linux-64:
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/pandoc-3.14-ha770c72_1.conda
+      linux-aarch64:
+      - conda: https://conda.anaconda.org/conda-forge/linux-aarch64/pandoc-3.14-h8af1aa0_1.conda
+      osx-64:
+      - conda: https://conda.anaconda.org/conda-forge/osx-64/pandoc-3.14-h694c41f_1.conda
+      osx-arm64:
+      - conda: https://conda.anaconda.org/conda-forge/osx-arm64/pandoc-3.14-hce30654_1.conda
+  pandoc-min:
+    channels:
+    - url: https://conda.anaconda.org/conda-forge/
+    packages:
+      linux-64:
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/pandoc-3.2-ha770c72_0.conda
+packages:
+- conda: https://conda.anaconda.org/conda-forge/linux-64/pandoc-3.14-ha770c72_1.conda
+  sha256: ca4311e67ed1f73d8043bc303cbe69e8b5c91a1c6d21d2ad91cf7014cbc16b79
+  md5: 89f7de35a63e474f0cf81387e919d57c
+  license: GPL-2.0-or-later
+  license_family: GPL
+  run_exports: {}
+  size: 23766706
+  timestamp: 1794829884241
+- conda: https://conda.anaconda.org/conda-forge/linux-64/pandoc-3.2-ha770c72_0.conda
+  sha256: 418348076c1a39170efb0bdc8a584ddd11e9ed0ff58ccd905488d3f165ca98ba
+  md5: 8c924f0b7f3e064b1c954a08e7c32fba
+  license: GPL-2.0-or-later
+  license_family: GPL
+  run_exports: {}
+  size: 21088628
+  timestamp: 1715499623651
+- conda: https://conda.anaconda.org/conda-forge/linux-aarch64/pandoc-3.14-h8af1aa0_1.conda
+  sha256: efd361626af58d7a2bc77311cc26d28ac70a96bc438572a450c5a897fdc56340
+  md5: 03b136dc107f24a4d558d7dd8c957f5f
+  license: GPL-2.0-or-later
+  license_family: GPL
+  run_exports: {}
+  size: 24984629
+  timestamp: 1794829902957
+- conda: https://conda.anaconda.org/conda-forge/osx-64/pandoc-3.14-h694c41f_1.conda
+  sha256: 177f0a708305552a895da7910672c62bee52f57eea9fbe53a67ef6f3127f252b
+  md5: 6ca71f7b9b4321bb6e478852e55e2702
+  license: GPL-2.0-or-later
+  license_family: GPL
+  run_exports: {}
+  size: 17935762
+  timestamp: 1794830024963
+- conda: https://conda.anaconda.org/conda-forge/osx-arm64/pandoc-3.14-hce30654_1.conda
+  sha256: 902bf4a0ca432dcd2f1c500cd2d814f678df0ef69ef3edb5ab2690c64b2de35d
+  md5: e7ace06278504b436cec4c649b4f99f5
+  license: GPL-2.0-or-later
+  license_family: GPL
+  run_exports: {}
+  size: 28488390
+  timestamp: 1794829899536

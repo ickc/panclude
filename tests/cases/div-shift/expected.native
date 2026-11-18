@@ -1,0 +1,73 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Div
+      ( "" , [] , [] )
+      [ Header 2 ( "one" , [] , [] ) [ Str "One" ]
+      , Header 3 ( "two" , [ "cls" ] , [] ) [ Str "Two" ]
+      , Header 4 ( "three" , [] , [] ) [ Str "Three" ]
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Header 3 ( "one" , [] , [] ) [ Str "One" ]
+      , Header 4 ( "two" , [ "cls" ] , [] ) [ Str "Two" ]
+      , Header 5 ( "three" , [] , [] ) [ Str "Three" ]
+      ]
+  , Para
+      [ Str "Below"
+      , Space
+      , Str "level"
+      , Space
+      , Str "1,"
+      , Space
+      , Str "a"
+      , Space
+      , Str "heading"
+      , Space
+      , Str "becomes"
+      , Space
+      , Str "a"
+      , Space
+      , Str "paragraph."
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Para [ Str "One" ]
+      , Header 1 ( "two" , [ "cls" ] , [] ) [ Str "Two" ]
+      , Header 2 ( "three" , [] , [] ) [ Str "Three" ]
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Para [ Str "One" ]
+      , Para [ Str "Two" ]
+      , Header 1 ( "three" , [] , [] ) [ Str "Three" ]
+      ]
+  , Para
+      [ Str "Not"
+      , Space
+      , Str "a"
+      , Space
+      , Str "whole"
+      , Space
+      , Str "number:"
+      , Space
+      , Str "a"
+      , Space
+      , Str "failure."
+      ]
+  , Div
+      ( ""
+      , []
+      , [ ( "include" , "chapter.md" )
+        , ( "shift-heading-level-by" , "x" )
+        ]
+      )
+      [ Para [ Str "placeholder" ] ]
+  , Div
+      ( ""
+      , []
+      , [ ( "include" , "chapter.md" )
+        , ( "shift-heading-level-by" , "1.5" )
+        ]
+      )
+      [ Para [ Str "placeholder" ] ]
+  ]

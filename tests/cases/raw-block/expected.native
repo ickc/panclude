@@ -1,0 +1,58 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "The"
+      , Space
+      , Str "block"
+      , Space
+      , Str "becomes"
+      , Space
+      , Str "a"
+      , Space
+      , Str "raw"
+      , Space
+      , Str "block"
+      , Space
+      , Str "of"
+      , Space
+      , Str "that"
+      , Space
+      , Str "format,"
+      , Space
+      , Str "holding"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "text;"
+      , SoftBreak
+      , Str "its"
+      , Space
+      , Str "other"
+      , Space
+      , Str "attributes"
+      , Space
+      , Str "go"
+      , Space
+      , Str "with"
+      , Space
+      , Str "it."
+      ]
+  , RawBlock
+      (Format "latex")
+      "\\usepackage{amsmath}\n\\newcommand{\\R}{\\mathbb{R}}"
+  , Para
+      [ Str "Ranges"
+      , Space
+      , Str "and"
+      , Space
+      , Str "dedent"
+      , Space
+      , Str "apply."
+      ]
+  , RawBlock (Format "html") "<tr><td>cell</td></tr>"
+  , RawBlock
+      (Format "html5")
+      "<table>\n    <tr><td>cell</td></tr>\n</table>"
+  ]
