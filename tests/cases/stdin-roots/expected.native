@@ -1,0 +1,30 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "document"
+      , Space
+      , Str "on"
+      , Space
+      , Str "standard"
+      , Space
+      , Str "input:"
+      , Space
+      , Str "its"
+      , Space
+      , Str "root"
+      , Space
+      , Str "is"
+      , Space
+      , Str "the"
+      , Space
+      , Str "working"
+      , Space
+      , Str "directory."
+      ]
+  , CodeBlock ( "" , [] , [] ) "from sub/x.txt"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "../outside.txt" ) ] )
+      "placeholder"
+  ]

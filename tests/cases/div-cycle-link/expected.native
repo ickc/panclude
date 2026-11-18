@@ -1,0 +1,76 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "The"
+      , Space
+      , Str "built-in"
+      , Space
+      , Str "tells"
+      , Space
+      , Str "files"
+      , Space
+      , Str "apart"
+      , Space
+      , Str "after"
+      , Space
+      , Str "resolving"
+      , Space
+      , Str "symbolic"
+      , Space
+      , Str "links:"
+      , Space
+      , Str "a"
+      , Space
+      , Str "cycle"
+      , SoftBreak
+      , Str "through"
+      , Space
+      , Str "a"
+      , Space
+      , Str "link"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "cycle"
+      , Space
+      , Str "(the"
+      , Space
+      , Str "Lua"
+      , Space
+      , Str "filter"
+      , Space
+      , Str "ends"
+      , Space
+      , Str "it"
+      , Space
+      , Str "at"
+      , Space
+      , Str "the"
+      , Space
+      , Str "depth"
+      , Space
+      , Str "limit)."
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Para [ Str "In" , Space , Str "a." ]
+      , Div
+          ( "" , [] , [ ( "include" , "again.md" ) ] )
+          [ Para
+              [ Str "the"
+              , Space
+              , Str "main"
+              , Space
+              , Str "document,"
+              , Space
+              , Str "through"
+              , Space
+              , Str "a"
+              , Space
+              , Str "link"
+              ]
+          ]
+      ]
+  ]

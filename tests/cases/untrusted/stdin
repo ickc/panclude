@@ -1,0 +1,6 @@
+Untrusted options may ask for the step, but it reads nothing unless the
+host gives roots.
+
+```{include="x.txt"}
+placeholder
+```

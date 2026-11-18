@@ -1,0 +1,24 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "Under"
+      , Space
+      , Str "pandoc\8217s"
+      , Space
+      , Str "sandbox,"
+      , Space
+      , Str "roots"
+      , Space
+      , Str "given"
+      , Space
+      , Str "explicitly"
+      , Space
+      , Str "are"
+      , Space
+      , Str "read."
+      ]
+  , CodeBlock ( "" , [] , [] ) "from x.txt"
+  , Div
+      ( "" , [] , [] )
+      [ Para [ Str "From" , Space , Str "part.md." ] ]
+  ]

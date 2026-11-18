@@ -1,0 +1,94 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "The"
+      , Space
+      , Str "built-in"
+      , Space
+      , Str "reads"
+      , Space
+      , Str "only"
+      , Space
+      , Str "inside"
+      , Space
+      , Str "its"
+      , Space
+      , Str "roots:"
+      , Space
+      , Str "by"
+      , Space
+      , Str "default"
+      , Space
+      , Str "the"
+      , Space
+      , Str "main"
+      , Space
+      , Str "document\8217s"
+      , SoftBreak
+      , Str "directory"
+      , Space
+      , Str "(here"
+      , Space
+      , Str "book/)"
+      , Space
+      , Str "and"
+      , Space
+      , Str "below."
+      , Space
+      , Str "A"
+      , Space
+      , Str "path"
+      , Space
+      , Str "is"
+      , Space
+      , Str "judged"
+      , Space
+      , Str "as"
+      , Space
+      , Str "written"
+      , Space
+      , Str "("
+      , Code ( "" , [] , [] ) "."
+      , Space
+      , Str "and"
+      , SoftBreak
+      , Code ( "" , [] , [] ) ".."
+      , Space
+      , Str "by"
+      , Space
+      , Str "its"
+      , Space
+      , Str "text),"
+      , Space
+      , Str "whether"
+      , Space
+      , Str "or"
+      , Space
+      , Str "not"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file"
+      , Space
+      , Str "exists."
+      ]
+  , CodeBlock ( "" , [] , [] ) "from book/ch.txt"
+  , CodeBlock ( "" , [] , [] ) "from book/ch.txt"
+  , CodeBlock ( "" , [] , [] ) "from book/sub/x.txt"
+  , Para [ Str "Outside:" ]
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "../secret.txt" ) ] )
+      "placeholder"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "sub/../../secret.txt" ) ] )
+      "placeholder"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "../missing.txt" ) ] )
+      "placeholder"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "/etc/passwd" ) ] )
+      "placeholder"
+  , Div
+      ( "" , [] , [ ( "include" , "../secret.txt" ) ] )
+      [ Para [ Str "placeholder" ] ]
+  ]

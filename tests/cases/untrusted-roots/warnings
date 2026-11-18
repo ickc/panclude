@@ -1,0 +1,2 @@
+panclude: cannot include "x.txt" in standard input: outside the roots
+panclude: cannot include "shared/../x.txt" in standard input: outside the roots

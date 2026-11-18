@@ -1,0 +1,8 @@
+A document on standard input: its root is the working directory.
+
+```{include="sub/x.txt"}
+```
+
+```{include="../outside.txt"}
+placeholder
+```
