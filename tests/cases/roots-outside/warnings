@@ -1,0 +1,5 @@
+panclude: cannot include "../secret.txt" in book/doc.md: outside the roots
+panclude: cannot include "sub/../../secret.txt" in book/doc.md: outside the roots
+panclude: cannot include "../missing.txt" in book/doc.md: outside the roots
+panclude: cannot include "/etc/passwd" in book/doc.md: outside the roots
+panclude: cannot include "../secret.txt" in book/doc.md: outside the roots

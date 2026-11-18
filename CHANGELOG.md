@@ -11,5 +11,10 @@
   warning in pandoc's log.
 - `tests/cases/`, the conformance cases of the specification, as plain
   files, and their runner, `pixi run test`.
+- The cases of the step built into libpandoc (`only: builtin`): roots,
+  as given and by default, symbolic links leaving them, pandoc's sandbox,
+  `untrusted` with and without the host's roots, a cycle through a link,
+  a format's own includes; `SPEC.md` has the built-in's rules and
+  messages, and the case files `roots` and `untrusted`.
 - `tools/port-include-files.lua` rewrites pandoc-ext/include-files'
   blocks into panclude's divs.

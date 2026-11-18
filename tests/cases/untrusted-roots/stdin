@@ -1,0 +1,13 @@
+With untrusted options the step reads inside the roots the host gives,
+and only there: not the working directory.
+
+```{include="shared/x.txt"}
+```
+
+```{include="x.txt"}
+placeholder
+```
+
+```{include="shared/../x.txt"}
+placeholder
+```

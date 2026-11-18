@@ -1,0 +1,54 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "An"
+      , Space
+      , Str "included"
+      , Space
+      , Str "file"
+      , Space
+      , Str "is"
+      , Space
+      , Str "read"
+      , Space
+      , Str "in"
+      , Space
+      , Str "pandoc\8217s"
+      , Space
+      , Str "sandbox,"
+      , Space
+      , Str "with"
+      , Space
+      , Str "no"
+      , Space
+      , Str "files:"
+      , Space
+      , Str "a"
+      , Space
+      , Str "format\8217s"
+      , SoftBreak
+      , Str "own"
+      , Space
+      , Str "includes"
+      , Space
+      , Str "in"
+      , Space
+      , Str "it"
+      , Space
+      , Str "(LaTeX\8217s"
+      , Space
+      , Code ( "" , [] , [] ) "\\input"
+      , Str ")"
+      , Space
+      , Str "read"
+      , Space
+      , Str "nothing."
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Header
+          1 ( "a-part" , [] , [] ) [ Str "A" , Space , Str "part" ]
+      , Para [ Str "Before." ]
+      , Para [ Str "After." ]
+      ]
+  ]

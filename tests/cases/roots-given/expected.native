@@ -1,0 +1,38 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "Roots"
+      , Space
+      , Str "given"
+      , Space
+      , Str "replace"
+      , Space
+      , Str "the"
+      , Space
+      , Str "default:"
+      , Space
+      , Str "here"
+      , Space
+      , Str "shared/"
+      , Space
+      , Str "and"
+      , Space
+      , Str "book/sub/,"
+      , Space
+      , Str "not"
+      , Space
+      , Str "the"
+      , SoftBreak
+      , Str "main"
+      , Space
+      , Str "document\8217s"
+      , Space
+      , Str "directory,"
+      , Space
+      , Str "book/."
+      ]
+  , CodeBlock ( "" , [] , [] ) "from book/sub/a.txt"
+  , CodeBlock ( "" , [] , [] ) "from shared/x.txt"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "ch.txt" ) ] ) "placeholder"
+  ]

@@ -1,0 +1,3 @@
+panclude: cannot include "out.txt" in book/doc.md: a symbolic link leads outside the roots
+panclude: cannot include "up/secret.txt" in book/doc.md: a symbolic link leads outside the roots
+panclude: cannot include "out.txt" in book/part-link.md: a symbolic link leads outside the roots

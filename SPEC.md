@@ -101,6 +101,11 @@ shown when the step does not run
   stop, default image extension, ...), but as a part of a document, not
   a standalone one: so a reader such as rst's does not take a lone first
   heading for the title, which would then go with the metadata.
+- The built-in reads it in pandoc's sandbox, with no files: a format's
+  own includes in it (LaTeX's `\input`, RST's `include`, Org's
+  `#+INCLUDE`) read nothing, with pandoc's warning, as they could
+  otherwise read outside the roots (section 2). The Lua filter's
+  `pandoc.read` reads them.
 - `shift-heading-level-by=N`: N, a number that may be negative, added to
   the level of each heading of the included document, those it includes
   in turn too (so shifts add up through nesting). A level below 1 becomes
@@ -152,12 +157,35 @@ heading, an image, a link, ...) is left alone, without a warning.
   URL, every include fails: there is no directory to start from.
 - **`panclude.lua`** reads what pandoc's Lua can read: anything the
   process can. Its documentation says so.
-- **The built-in** reads only inside its roots: by default the main
-  document's directory and below **(open)**; the host may give
-  others. A path is checked after symbolic links are resolved. With
-  libpandoc's `untrusted`, there are no roots unless the host gives some,
-  so every include fails. In the directory sandbox the mounts are all
-  there is.
+- **The built-in** reads only inside its **roots**, directories and
+  what is below them:
+  - by default the main document's directory **(open)**: its first input
+    file's, or the working directory for standard input (also for the
+    input a libpandoc host gives `pandoc_convert`, which pandoc reads
+    from a temporary file);
+  - instead, those its filter entry names, `{"type": "panclude",
+    "roots": ["DIR", ...]}`, relative ones from the working directory;
+    the main document's directory is then a root only if named. Each
+    must be a directory: else the conversion fails, an option error;
+  - under pandoc's sandbox (`--sandbox`, `"sandbox": true`), only roots
+    named so: an entry naming none (`-F panclude`, `"panclude"`) has
+    none, as pandoc's sandbox reads only the files the options name;
+  - with libpandoc's `untrusted` options, only the roots the host gives,
+    `"untrusted": {"panclude-roots": ["DIR", ...]}`: the untrusted
+    options may name the step (`"filters": ["panclude"]`), not its
+    roots, and without the host's there are none.
+
+  A path is judged from the directory of the file holding the element,
+  that directory's symbolic links resolved, twice: as written, `.` and
+  `..` resolved by its text, it must lie inside a root (else `outside the
+  roots`, whether the file exists or not); and so must the file once its
+  own symbolic links are resolved (else `a symbolic link leads outside
+  the roots`). The file read is the one so resolved. With no roots at
+  all, every include fails (`there are no roots, so no file is
+  included`).
+- **In the directory sandbox** (libpandoc.wasm seeing only the
+  directories its host opens to it) the built-in is the same, and those
+  directories are all there is.
 
 ## 3. Failures
 
@@ -191,7 +219,9 @@ directory), and `REASON` one of:
 |---|---|
 | no such file | `not found` |
 | the file cannot be opened or read (a directory, no permission) | `cannot be read` |
-| outside the roots (the built-in) | `outside the roots` |
+| outside the roots, as written (the built-in) | `outside the roots` |
+| inside them as written, outside once symbolic links are resolved (the built-in) | `a symbolic link leads outside the roots` |
+| no roots at all (the built-in: pandoc's sandbox, `untrusted`, `"roots": []`) | `there are no roots, so no file is included` |
 | a number that is not one | `startLine="x" is not a whole number from 1` (also `endLine`, `start-line`, `end-line`, as written); `dedent="x" is not a whole number`; `shift-heading-level-by="x" is not a whole number` |
 | an empty `raw` | `raw="" names no format` |
 | a range that selects nothing | `the range selects none of the file's N lines` |
@@ -204,18 +234,24 @@ directory), and `REASON` one of:
 | the main document read from a URL | `the document is a URL, so no file is included` |
 
 When an element has more than one fault, the first of these checks
-gives the reason: the element's attributes, the path, the depth, a
-cycle, the file, its range, its format.
+gives the reason: the element's attributes, the path, the depth, the
+roots (the built-in), a cycle, the file, its range, its format.
 
 The Lua filter warns with `pandoc.log.warn`, which pandoc 3.2 added; it
 needs pandoc 3.2 or later. Its warnings are `ScriptingWarning`s in
-pandoc's log (`--log`), the message as above.
+pandoc's log (`--log`), the message as above. The built-in's are too,
+without a source position.
 
 ## 4. Order
 
 The step runs before every other filter: `-L panclude.lua` first on a
 pandoc command line; in a libpandoc host, the reserved name `panclude` in
-the filter list, as `citeproc` is one. An element it handled no longer has
+the filter list, as `citeproc` is one: `-F panclude` on a command line,
+`"panclude"` or `{"type": "panclude", "roots": [...]}` in the options'
+`"filters"` (a program named `panclude` is then not run: name it
+`./panclude`). The built-in runs where it is placed: after other
+filters, it leaves to them the elements as the reader made them, and
+libpandoc neither moves it nor warns. An element it handled no longer has
 `include`, so running it twice changes nothing, but for an element whose
 include failed, which the second run tries again (with a warning again;
 for a cycle or the depth limit, one level further).
@@ -244,15 +280,18 @@ UTF-8 text, so they fail as such); URLs.
 
 A directory of cases, `tests/cases/`, one directory a case. One runner
 runs every case against `pandoc -L panclude.lua` (`spec/cases_spec.lua`),
-another will run them against a libpandoc host with the built-in; the
-cases about roots, `untrusted` and the sandbox will be the built-in's
-alone. A case is plain files, in the case's directory, which is the
-working directory pandoc runs in:
+another, libpandoc's (`test/panclude.mjs` there), against libpandoc's
+`pandoc_main` with the built-in, natively and in libpandoc.wasm; the
+cases about roots, symbolic links, `untrusted` and pandoc's sandbox are
+the built-in's alone. A case is plain files, in the case's directory,
+which is the working directory pandoc runs in:
 
 | file | |
 |---|---|
 | `doc.md` | the document, and beside it the files it names |
-| `args` | optional: pandoc's arguments, one a line, the document's path among them; without it, `doc.md`. A line with `{panclude}` stands for the step there (the Lua runner puts the filter's path in its place: `--lua-filter={panclude}`); without such a line, the runner puts the step first |
+| `args` | optional: pandoc's arguments, one a line, the document's path among them; without it, `doc.md`. A line with `{panclude}` stands for the step there (the Lua runner puts the filter's path in its place: `--lua-filter={panclude}`; libpandoc's makes the line `--filter=panclude`); without such a line, the runner puts the step first |
+| `roots` | optional, `only: builtin`: the step's roots, one directory a line, relative to the case's directory; the step is then `{"type": "panclude", "roots": [...]}`, the only filter (`pandoc_main`'s `filters_json`) |
+| `untrusted` | optional, `only: builtin`: the value of libpandoc's `"untrusted"` (`true`, or `{"panclude-roots": [...]}`); the case is then a conversion of `stdin` (`pandoc_convert`) with the untrusted options `{"filters": ["panclude"]}`, to the native format, and has no `args` |
 | `stdin` | optional: the document, given on standard input; then `args` defaults to none |
 | `env` | optional: `NAME=VALUE` lines, set in pandoc's environment (`PANDOC_INPUT_FORMAT` is otherwise empty for the Lua filter) |
 | `only` | optional: `lua` or `builtin`, the one implementation the case is for |

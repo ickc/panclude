@@ -1,0 +1,41 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "Under"
+      , Space
+      , Str "pandoc\8217s"
+      , Space
+      , Str "sandbox"
+      , Space
+      , Str "the"
+      , Space
+      , Str "step"
+      , Space
+      , Str "has"
+      , Space
+      , Str "no"
+      , Space
+      , Str "roots"
+      , Space
+      , Str "unless"
+      , Space
+      , Str "they"
+      , Space
+      , Str "are"
+      , Space
+      , Str "given:"
+      , Space
+      , Str "no"
+      , SoftBreak
+      , Str "file"
+      , Space
+      , Str "is"
+      , Space
+      , Str "included."
+      ]
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "x.txt" ) ] ) "placeholder"
+  , Div
+      ( "" , [] , [ ( "include" , "part.md" ) ] )
+      [ Para [ Str "placeholder" ] ]
+  ]

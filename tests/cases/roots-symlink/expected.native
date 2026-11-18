@@ -1,0 +1,112 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "path"
+      , Space
+      , Str "is"
+      , Space
+      , Str "judged"
+      , Space
+      , Str "after"
+      , Space
+      , Str "symbolic"
+      , Space
+      , Str "links"
+      , Space
+      , Str "are"
+      , Space
+      , Str "resolved:"
+      , Space
+      , Str "a"
+      , Space
+      , Str "link"
+      , Space
+      , Str "staying"
+      , Space
+      , Str "inside"
+      , SoftBreak
+      , Str "the"
+      , Space
+      , Str "roots"
+      , Space
+      , Str "is"
+      , Space
+      , Str "followed,"
+      , Space
+      , Str "one"
+      , Space
+      , Str "leading"
+      , Space
+      , Str "out"
+      , Space
+      , Str "of"
+      , Space
+      , Str "them"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "failure."
+      ]
+  , CodeBlock ( "" , [] , [] ) "from book/ch.txt"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "out.txt" ) ] ) "placeholder"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "up/secret.txt" ) ] )
+      "placeholder"
+  , Para
+      [ Str "A"
+      , Space
+      , Str "link"
+      , Space
+      , Str "out"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "roots"
+      , Space
+      , Str "and"
+      , Space
+      , Str "back"
+      , Space
+      , Str "in"
+      , Space
+      , Str "again"
+      , Space
+      , Str "is"
+      , Space
+      , Str "inside:"
+      ]
+  , CodeBlock ( "" , [] , [] ) "from book/ch.txt"
+  , Div
+      ( "" , [] , [] )
+      [ Para
+          [ Str "A"
+          , Space
+          , Str "part,"
+          , Space
+          , Str "including"
+          , Space
+          , Str "through"
+          , Space
+          , Str "a"
+          , Space
+          , Str "link"
+          , Space
+          , Str "that"
+          , Space
+          , Str "leaves"
+          , Space
+          , Str "the"
+          , Space
+          , Str "roots."
+          ]
+      , CodeBlock
+          ( "" , [] , [ ( "include" , "out.txt" ) ] ) "placeholder"
+      ]
+  ]

@@ -1,0 +1,48 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "With"
+      , Space
+      , Str "untrusted"
+      , Space
+      , Str "options"
+      , Space
+      , Str "the"
+      , Space
+      , Str "step"
+      , Space
+      , Str "reads"
+      , Space
+      , Str "inside"
+      , Space
+      , Str "the"
+      , Space
+      , Str "roots"
+      , Space
+      , Str "the"
+      , Space
+      , Str "host"
+      , Space
+      , Str "gives,"
+      , SoftBreak
+      , Str "and"
+      , Space
+      , Str "only"
+      , Space
+      , Str "there:"
+      , Space
+      , Str "not"
+      , Space
+      , Str "the"
+      , Space
+      , Str "working"
+      , Space
+      , Str "directory."
+      ]
+  , CodeBlock ( "" , [] , [] ) "from shared/x.txt"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "x.txt" ) ] ) "placeholder"
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "shared/../x.txt" ) ] )
+      "placeholder"
+  ]
