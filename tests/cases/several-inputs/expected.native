@@ -1,0 +1,23 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "In"
+      , Space
+      , Str "the"
+      , Space
+      , Str "first"
+      , Space
+      , Str "file."
+      ]
+  , CodeBlock ( "" , [] , [] ) "first/x.txt"
+  , Para
+      [ Str "In"
+      , Space
+      , Str "the"
+      , Space
+      , Str "second"
+      , Space
+      , Str "file."
+      ]
+  , CodeBlock ( "" , [] , [] ) "first/x.txt"
+  ]

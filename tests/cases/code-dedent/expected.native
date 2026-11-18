@@ -1,0 +1,57 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "dedent=N"
+      , Space
+      , Str "removes"
+      , Space
+      , Str "up"
+      , Space
+      , Str "to"
+      , Space
+      , Str "N"
+      , Space
+      , Str "leading"
+      , Space
+      , Str "spaces"
+      , Space
+      , Str "of"
+      , Space
+      , Str "each"
+      , Space
+      , Str "line:"
+      , Space
+      , Str "not"
+      , Space
+      , Str "tabs,"
+      , Space
+      , Str "and"
+      , Space
+      , Str "not"
+      , SoftBreak
+      , Str "spaces"
+      , Space
+      , Str "after"
+      , Space
+      , Str "other"
+      , Space
+      , Str "text."
+      ]
+  , CodeBlock
+      ( "" , [] , [] )
+      "four\ntwo\n  six\n\ttab\nx   inner\nno indent"
+  , Para
+      [ Str "Zero"
+      , Space
+      , Str "removes"
+      , Space
+      , Str "nothing."
+      ]
+  , CodeBlock
+      ( "" , [] , [] )
+      "    four\n  two\n      six\n\ttab\nx   inner\nno indent"
+  , Para
+      [ Str "With" , Space , Str "a" , Space , Str "range." ]
+  , CodeBlock
+      ( "" , [] , [ ( "startFrom" , "3" ) ] ) "    six"
+  ]

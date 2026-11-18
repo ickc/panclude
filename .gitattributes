@@ -1,0 +1,4 @@
+pixi.lock merge=binary linguist-language=YAML linguist-generated=true
+# The cases hold files byte for byte: CRLF, a byte order mark, text that
+# is not UTF-8.
+tests/cases/** -text

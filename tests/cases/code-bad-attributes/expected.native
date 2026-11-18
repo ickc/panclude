@@ -1,0 +1,110 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "line"
+      , Space
+      , Str "number"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "whole"
+      , Space
+      , Str "number"
+      , Space
+      , Str "from"
+      , Space
+      , Str "1,"
+      , Space
+      , Str "and"
+      , Space
+      , Str "dedent"
+      , Space
+      , Str "a"
+      , Space
+      , Str "whole"
+      , Space
+      , Str "number,"
+      , Space
+      , Str "in"
+      , SoftBreak
+      , Str "decimal:"
+      , Space
+      , Str "anything"
+      , Space
+      , Str "else"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "failure,"
+      , Space
+      , Str "and"
+      , Space
+      , Str "the"
+      , Space
+      , Str "block"
+      , Space
+      , Str "is"
+      , Space
+      , Str "left"
+      , Space
+      , Str "as"
+      , Space
+      , Str "it"
+      , Space
+      , Str "was."
+      ]
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "x.txt" ) , ( "startLine" , "x" ) ]
+      )
+      "not a number"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "x.txt" ) , ( "startLine" , "0" ) ]
+      )
+      "zero"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "x.txt" ) , ( "endLine" , "-1" ) ]
+      )
+      "negative"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "x.txt" ) , ( "startLine" , "0x1" ) ]
+      )
+      "hexadecimal"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "x.txt" ) , ( "end-line" , "1.0" ) ]
+      )
+      "a fraction, hyphenated"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "x.txt" ) , ( "dedent" , "2.0" ) ]
+      )
+      "a fraction"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "x.txt" ) , ( "dedent" , "-1" ) ]
+      )
+      "negative"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "x.txt" ) , ( "dedent" , "" ) ]
+      )
+      "empty"
+  ]

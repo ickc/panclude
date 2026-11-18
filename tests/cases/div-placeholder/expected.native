@@ -1,0 +1,45 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "div\8217s"
+      , Space
+      , Str "placeholder"
+      , Space
+      , Str "is"
+      , Space
+      , Str "not"
+      , Space
+      , Str "looked"
+      , Space
+      , Str "into:"
+      , Space
+      , Str "replaced"
+      , Space
+      , Str "when"
+      , Space
+      , Str "its"
+      , Space
+      , Str "include"
+      , SoftBreak
+      , Str "succeeds,"
+      , Space
+      , Str "as"
+      , Space
+      , Str "it"
+      , Space
+      , Str "was"
+      , Space
+      , Str "when"
+      , Space
+      , Str "it"
+      , Space
+      , Str "fails."
+      ]
+  , Div ( "" , [] , [] ) [ Para [ Str "part" ] ]
+  , Div
+      ( "" , [] , [ ( "include" , "missing.md" ) ] )
+      [ CodeBlock ( "" , [] , [ ( "include" , "code.txt" ) ] ) ""
+      ]
+  ]

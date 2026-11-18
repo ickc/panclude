@@ -1,0 +1,21 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "An"
+      , Space
+      , Str "empty"
+      , Space
+      , Str "raw"
+      , Space
+      , Str "format"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "failure."
+      ]
+  , CodeBlock
+      ( "" , [] , [ ( "include" , "x.tex" ) , ( "raw" , "" ) ] )
+      "placeholder"
+  ]

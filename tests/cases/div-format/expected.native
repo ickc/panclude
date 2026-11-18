@@ -1,0 +1,66 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "The"
+      , Space
+      , Str "div\8217s"
+      , Space
+      , Str "format,"
+      , Space
+      , Str "as"
+      , Space
+      , Str "pandoc\8217s"
+      , Space
+      , Code ( "" , [] , [] ) "-f"
+      , Space
+      , Str "takes"
+      , Space
+      , Str "it,"
+      , Space
+      , Str "extensions"
+      , Space
+      , Str "included."
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Header
+          1
+          ( "an-org-heading" , [] , [] )
+          [ Str "An" , Space , Str "org" , Space , Str "heading" ]
+      , Para
+          [ Str "Some"
+          , Space
+          , Emph [ Str "italic" ]
+          , Space
+          , Str "text."
+          ]
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Para
+          [ Str "He"
+          , Space
+          , Str "said"
+          , Space
+          , Str "\"hello\""
+          , Space
+          , Str "--"
+          , Space
+          , Str "twice."
+          ]
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Para
+          [ Str "He"
+          , Space
+          , Str "said"
+          , Space
+          , Str "\"hello\""
+          , Space
+          , Str "--"
+          , Space
+          , Str "twice."
+          ]
+      ]
+  ]

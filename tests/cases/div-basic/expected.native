@@ -1,0 +1,113 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "The"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "blocks"
+      , Space
+      , Str "fill"
+      , Space
+      , Str "the"
+      , Space
+      , Str "div,"
+      , Space
+      , Str "in"
+      , Space
+      , Str "place"
+      , Space
+      , Str "of"
+      , Space
+      , Str "what"
+      , Space
+      , Str "was"
+      , Space
+      , Str "there;"
+      , Space
+      , Str "the"
+      , Space
+      , Str "div"
+      , Space
+      , Str "keeps"
+      , SoftBreak
+      , Str "its"
+      , Space
+      , Str "identifier,"
+      , Space
+      , Str "classes"
+      , Space
+      , Str "and"
+      , Space
+      , Str "other"
+      , Space
+      , Str "attributes,"
+      , Space
+      , Str "but"
+      , Space
+      , Str "not"
+      , Space
+      , Code ( "" , [] , [] ) "include"
+      , Str ","
+      , Space
+      , Code ( "" , [] , [] ) "format"
+      , SoftBreak
+      , Str "and"
+      , Space
+      , Code ( "" , [] , [] ) "shift-heading-level-by"
+      , Str "."
+      ]
+  , Div
+      ( "intro" , [ "chapter" ] , [ ( "lang" , "en" ) ] )
+      [ Header
+          1 ( "introduction" , [] , [] ) [ Str "Introduction" ]
+      , Para
+          [ Str "A"
+          , Space
+          , Str "paragraph"
+          , Space
+          , Str "with"
+          , Space
+          , Emph [ Str "emphasis" ]
+          , Str "."
+          ]
+      , BulletList
+          [ [ Plain [ Str "a" , Space , Str "list" ] ]
+          , [ Plain [ Str "of" , Space , Str "two" ] ]
+          ]
+      , CodeBlock ( "" , [ "python" ] , [] ) "print(\"code\")"
+      ]
+  , Para
+      [ Str "An"
+      , Space
+      , Str "empty"
+      , Space
+      , Str "div"
+      , Space
+      , Str "is"
+      , Space
+      , Str "filled"
+      , Space
+      , Str "too."
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Header
+          1 ( "introduction" , [] , [] ) [ Str "Introduction" ]
+      , Para
+          [ Str "A"
+          , Space
+          , Str "paragraph"
+          , Space
+          , Str "with"
+          , Space
+          , Emph [ Str "emphasis" ]
+          , Str "."
+          ]
+      , BulletList
+          [ [ Plain [ Str "a" , Space , Str "list" ] ]
+          , [ Plain [ Str "of" , Space , Str "two" ] ]
+          ]
+      , CodeBlock ( "" , [ "python" ] , [] ) "print(\"code\")"
+      ]
+  ]

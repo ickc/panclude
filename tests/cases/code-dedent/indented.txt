@@ -1,0 +1,6 @@
+    four
+  two
+      six
+	tab
+x   inner
+no indent

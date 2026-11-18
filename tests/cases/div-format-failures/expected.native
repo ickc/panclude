@@ -1,0 +1,93 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "format"
+      , Space
+      , Str "pandoc"
+      , Space
+      , Str "does"
+      , Space
+      , Str "not"
+      , Space
+      , Str "read,"
+      , Space
+      , Str "and"
+      , Space
+      , Str "a"
+      , Space
+      , Str "document"
+      , Space
+      , Str "that"
+      , Space
+      , Str "does"
+      , Space
+      , Str "not"
+      , Space
+      , Str "parse,"
+      , Space
+      , Str "are"
+      , SoftBreak
+      , Str "failures;"
+      , Space
+      , Str "the"
+      , Space
+      , Str "message"
+      , Space
+      , Str "does"
+      , Space
+      , Str "not"
+      , Space
+      , Str "quote"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file."
+      ]
+  , Div
+      ( ""
+      , []
+      , [ ( "include" , "x.md" ) , ( "format" , "nonsense" ) ]
+      )
+      [ Para [ Str "unknown" , Space , Str "format" ] ]
+  , Div
+      ( "" , [] , [ ( "include" , "x.md" ) , ( "format" , "" ) ] )
+      [ Para [ Str "empty" , Space , Str "format" ] ]
+  , Div
+      ( ""
+      , []
+      , [ ( "include" , "x.md" )
+        , ( "format" , "markdown+nonsense" )
+        ]
+      )
+      [ Para [ Str "unknown" , Space , Str "extension" ] ]
+  , Div
+      ( ""
+      , []
+      , [ ( "include" , "bad.json" ) , ( "format" , "json" ) ]
+      )
+      [ Para
+          [ Str "does" , Space , Str "not" , Space , Str "parse" ]
+      ]
+  , Div
+      ( "" , [] , [ ( "include" , "bad.json" ) ] )
+      [ Para
+          [ Str "does"
+          , Space
+          , Str "not"
+          , Space
+          , Str "parse,"
+          , Space
+          , Str "its"
+          , Space
+          , Str "format"
+          , Space
+          , Str "from"
+          , Space
+          , Str "its"
+          , Space
+          , Str "extension"
+          ]
+      ]
+  ]

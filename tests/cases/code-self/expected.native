@@ -1,0 +1,35 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "code"
+      , Space
+      , Str "block"
+      , Space
+      , Str "may"
+      , Space
+      , Str "include"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file"
+      , Space
+      , Str "that"
+      , Space
+      , Str "holds"
+      , Space
+      , Str "it:"
+      , Space
+      , Str "it"
+      , Space
+      , Str "is"
+      , Space
+      , Str "no"
+      , Space
+      , Str "cycle."
+      ]
+  , CodeBlock
+      ( "" , [] , [] )
+      "A code block may include the file that holds it: it is no cycle."
+  ]

@@ -1,0 +1,5 @@
+panclude: cannot include "x.md" in doc.md: pandoc cannot read it as "nonsense"
+panclude: cannot include "x.md" in doc.md: pandoc cannot read it as ""
+panclude: cannot include "x.md" in doc.md: pandoc cannot read it as "markdown+nonsense"
+panclude: cannot include "bad.json" in doc.md: pandoc cannot read it as "json"
+panclude: cannot include "bad.json" in doc.md: pandoc cannot read it as "json"

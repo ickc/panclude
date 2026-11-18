@@ -1,0 +1,63 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "range"
+      , Space
+      , Str "that"
+      , Space
+      , Str "selects"
+      , Space
+      , Str "no"
+      , Space
+      , Str "lines"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "failure:"
+      , Space
+      , Str "each"
+      , Space
+      , Str "block"
+      , Space
+      , Str "is"
+      , Space
+      , Str "left"
+      , Space
+      , Str "as"
+      , Space
+      , Str "it"
+      , Space
+      , Str "was."
+      ]
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "lines.txt" ) , ( "startLine" , "11" ) ]
+      )
+      "start past the end"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "lines.txt" )
+        , ( "startLine" , "5" )
+        , ( "endLine" , "4" )
+        ]
+      )
+      "start after end"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "empty.txt" ) , ( "startLine" , "1" ) ]
+      )
+      "an empty file, with a range"
+  , CodeBlock
+      ( ""
+      , []
+      , [ ( "include" , "empty.txt" ) , ( "endLine" , "1" ) ]
+      )
+      "an empty file, with an end"
+  ]

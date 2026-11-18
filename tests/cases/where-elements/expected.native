@@ -1,0 +1,100 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "The"
+      , Space
+      , Str "include"
+      , Space
+      , Str "works"
+      , Space
+      , Str "wherever"
+      , Space
+      , Str "the"
+      , Space
+      , Str "element"
+      , Space
+      , Str "does."
+      ]
+  , BulletList
+      [ [ Para
+            [ Str "In" , Space , Str "a" , Space , Str "list:" ]
+        , CodeBlock ( "" , [] , [] ) "included text"
+        ]
+      ]
+  , BlockQuote
+      [ Para
+          [ Str "In"
+          , Space
+          , Str "a"
+          , Space
+          , Str "block"
+          , Space
+          , Str "quote:"
+          ]
+      , Div
+          ( "" , [] , [] )
+          [ Para
+              [ Str "An"
+              , Space
+              , Emph [ Str "included" ]
+              , Space
+              , Str "paragraph."
+              ]
+          ]
+      ]
+  , Table
+      ( "" , [] , [] )
+      (Caption Nothing [])
+      [ ( AlignDefault , ColWidth 0.3888888888888889 ) ]
+      (TableHead ( "" , [] , [] ) [])
+      [ TableBody
+          ( "" , [] , [] )
+          (RowHeadColumns 0)
+          []
+          [ Row
+              ( "" , [] , [] )
+              [ Cell
+                  ( "" , [] , [] )
+                  AlignDefault
+                  (RowSpan 1)
+                  (ColSpan 1)
+                  [ Para
+                      [ Str "In"
+                      , Space
+                      , Str "a"
+                      , Space
+                      , Str "table"
+                      , Space
+                      , Str "cell:"
+                      ]
+                  , CodeBlock ( "" , [] , [] ) "included text"
+                  ]
+              ]
+          ]
+      ]
+      (TableFoot ( "" , [] , [] ) [])
+  , Para
+      [ Str "In"
+      , Space
+      , Str "a"
+      , Space
+      , Str "note."
+      , Note
+          [ Para [ Str "The" , Space , Str "note:" ]
+          , CodeBlock ( "" , [] , [] ) "included text"
+          ]
+      ]
+  , Div
+      ( "" , [ "outer" ] , [] )
+      [ Div
+          ( "" , [] , [] )
+          [ Para
+              [ Str "An"
+              , Space
+              , Emph [ Str "included" ]
+              , Space
+              , Str "paragraph."
+              ]
+          ]
+      ]
+  ]

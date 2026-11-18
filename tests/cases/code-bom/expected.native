@@ -1,0 +1,35 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "byte"
+      , Space
+      , Str "order"
+      , Space
+      , Str "mark"
+      , Space
+      , Str "is"
+      , Space
+      , Str "dropped,"
+      , Space
+      , Str "and"
+      , Space
+      , Str "does"
+      , Space
+      , Str "not"
+      , Space
+      , Str "count"
+      , Space
+      , Str "in"
+      , Space
+      , Str "the"
+      , Space
+      , Str "first"
+      , Space
+      , Str "line."
+      ]
+  , CodeBlock ( "" , [] , [] ) "first\nsecond"
+  , CodeBlock ( "" , [] , [] ) "first"
+  , RawBlock (Format "html") "first\nsecond"
+  ]

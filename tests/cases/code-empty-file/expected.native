@@ -1,0 +1,63 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "An"
+      , Space
+      , Str "empty"
+      , Space
+      , Str "file,"
+      , Space
+      , Str "without"
+      , Space
+      , Str "a"
+      , Space
+      , Str "range,"
+      , Space
+      , Str "is"
+      , Space
+      , Str "an"
+      , Space
+      , Str "empty"
+      , Space
+      , Str "block."
+      ]
+  , CodeBlock ( "" , [] , [] ) ""
+  , Para
+      [ Str "A"
+      , Space
+      , Str "file"
+      , Space
+      , Str "of"
+      , Space
+      , Str "one"
+      , Space
+      , Str "empty"
+      , Space
+      , Str "line"
+      , Space
+      , Str "is"
+      , Space
+      , Str "an"
+      , Space
+      , Str "empty"
+      , Space
+      , Str "block"
+      , Space
+      , Str "too."
+      ]
+  , CodeBlock ( "" , [] , [] ) ""
+  , Para
+      [ Str "Two"
+      , Space
+      , Str "empty"
+      , Space
+      , Str "lines"
+      , Space
+      , Str "are"
+      , Space
+      , Str "a"
+      , Space
+      , Str "newline."
+      ]
+  , CodeBlock ( "" , [] , [] ) "\n"
+  ]

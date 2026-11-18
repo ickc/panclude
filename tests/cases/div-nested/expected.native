@@ -1,0 +1,62 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "Each"
+      , Space
+      , Str "include"
+      , Space
+      , Str "is"
+      , Space
+      , Str "relative"
+      , Space
+      , Str "to"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file"
+      , Space
+      , Str "that"
+      , Space
+      , Str "holds"
+      , Space
+      , Str "it."
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Header
+          2
+          ( "a-in-parts" , [] , [] )
+          [ Str "A," , Space , Str "in" , Space , Str "parts/" ]
+      , CodeBlock ( "" , [] , [] ) "parts/code/x.txt"
+      , CodeBlock ( "" , [] , [] ) "top.txt"
+      , Div
+          ( "" , [] , [] )
+          [ Header
+              3
+              ( "b-in-parts-shifted-twice" , [] , [] )
+              [ Str "B,"
+              , Space
+              , Str "in"
+              , Space
+              , Str "parts/,"
+              , Space
+              , Str "shifted"
+              , Space
+              , Str "twice"
+              ]
+          , Div
+              ( "" , [] , [] )
+              [ Header
+                  3
+                  ( "c-in-partssub" , [] , [] )
+                  [ Str "C,"
+                  , Space
+                  , Str "in"
+                  , Space
+                  , Str "parts/sub/"
+                  ]
+              , CodeBlock ( "" , [] , [] ) "parts/sub/c.txt"
+              ]
+          ]
+      ]
+  ]

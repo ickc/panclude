@@ -1,0 +1,115 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "Lines"
+      , Space
+      , Str "3"
+      , Space
+      , Str "to"
+      , Space
+      , Str "5;"
+      , Space
+      , Str "startFrom"
+      , Space
+      , Str "is"
+      , Space
+      , Str "set"
+      , Space
+      , Str "to"
+      , Space
+      , Str "startLine."
+      ]
+  , CodeBlock
+      ( "" , [ "numberLines" ] , [ ( "startFrom" , "3" ) ] )
+      "line 3\nline 4\nline 5"
+  , Para
+      [ Str "From"
+      , Space
+      , Str "line"
+      , Space
+      , Str "8"
+      , Space
+      , Str "to"
+      , Space
+      , Str "the"
+      , Space
+      , Str "end."
+      ]
+  , CodeBlock
+      ( "" , [] , [ ( "startFrom" , "8" ) ] )
+      "line 8\nline 9\nline 10"
+  , Para
+      [ Str "Up"
+      , Space
+      , Str "to"
+      , Space
+      , Str "line"
+      , Space
+      , Str "2:"
+      , Space
+      , Str "no"
+      , Space
+      , Str "startFrom"
+      , Space
+      , Str "without"
+      , Space
+      , Str "startLine."
+      ]
+  , CodeBlock ( "" , [] , [] ) "line 1\nline 2"
+  , Para [ Str "One" , Space , Str "line." ]
+  , CodeBlock ( "" , [] , [ ( "startFrom" , "4" ) ] ) "line 4"
+  , Para
+      [ Str "An"
+      , Space
+      , Str "end"
+      , Space
+      , Str "past"
+      , Space
+      , Str "the"
+      , Space
+      , Str "last"
+      , Space
+      , Str "line"
+      , Space
+      , Str "ends"
+      , Space
+      , Str "at"
+      , Space
+      , Str "the"
+      , Space
+      , Str "last"
+      , Space
+      , Str "line."
+      ]
+  , CodeBlock
+      ( "" , [] , [ ( "startFrom" , "9" ) ] ) "line 9\nline 10"
+  , Para
+      [ Str "A"
+      , Space
+      , Str "startFrom"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "block\8217s"
+      , Space
+      , Str "own"
+      , Space
+      , Str "stays."
+      ]
+  , CodeBlock
+      ( "" , [ "numberLines" ] , [ ( "startFrom" , "100" ) ] )
+      "line 3\nline 4"
+  , Para
+      [ Str "Leading"
+      , Space
+      , Str "zeros"
+      , Space
+      , Str "are"
+      , Space
+      , Str "decimal."
+      ]
+  , CodeBlock
+      ( "" , [] , [ ( "startFrom" , "7" ) ] ) "line 7\nline 8"
+  ]

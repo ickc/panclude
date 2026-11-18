@@ -1,0 +1,60 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "Each"
+      , Space
+      , Str "failure"
+      , Space
+      , Str "leaves"
+      , Space
+      , Str "the"
+      , Space
+      , Str "div"
+      , Space
+      , Str "exactly"
+      , Space
+      , Str "as"
+      , Space
+      , Str "it"
+      , Space
+      , Str "was,"
+      , Space
+      , Str "attributes"
+      , Space
+      , Str "and"
+      , Space
+      , Str "placeholder,"
+      , SoftBreak
+      , Str "with"
+      , Space
+      , Str "a"
+      , Space
+      , Str "warning."
+      ]
+  , Div
+      ( "id"
+      , [ "cls" ]
+      , [ ( "include" , "missing.md" )
+        , ( "shift-heading-level-by" , "1" )
+        , ( "format" , "markdown" )
+        , ( "data-x" , "y" )
+        ]
+      )
+      [ Para
+          [ Str "a" , Space , Str "missing" , Space , Str "file" ]
+      ]
+  , Div
+      ( "" , [] , [ ( "include" , "a-directory" ) ] )
+      [ Para [ Str "a" , Space , Str "directory" ] ]
+  , Div
+      ( "" , [] , [ ( "include" , "https://example.org/x.md" ) ] )
+      [ Para [ Str "a" , Space , Str "URL" ] ]
+  , Div
+      ( "" , [] , [ ( "include" , "" ) ] )
+      [ Para
+          [ Str "an" , Space , Str "empty" , Space , Str "path" ]
+      ]
+  , Div
+      ( "" , [] , [ ( "include" , "latin1.md" ) ] )
+      [ Para [ Str "not" , Space , Str "UTF-8" ] ]
+  ]

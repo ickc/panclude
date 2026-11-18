@@ -1,0 +1,6 @@
+panclude: cannot include "missing.txt" in doc.md: not found
+panclude: cannot include "a-directory" in doc.md: cannot be read
+panclude: cannot include "https://example.org/x.txt" in doc.md: a URL is not a path
+panclude: cannot include "file:a-directory/file.txt" in doc.md: a URL is not a path
+panclude: cannot include "" in doc.md: the path is empty
+panclude: cannot include "missing.txt" in doc.md: not found

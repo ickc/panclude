@@ -1,0 +1,97 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "file"
+      , Space
+      , Str "including"
+      , Space
+      , Str "itself,"
+      , Space
+      , Str "directly"
+      , Space
+      , Str "or"
+      , Space
+      , Str "not,"
+      , Space
+      , Str "is"
+      , Space
+      , Str "a"
+      , Space
+      , Str "failure:"
+      , Space
+      , Str "the"
+      , Space
+      , Str "element"
+      , Space
+      , Str "that"
+      , SoftBreak
+      , Str "would"
+      , Space
+      , Str "close"
+      , Space
+      , Str "the"
+      , Space
+      , Str "cycle"
+      , Space
+      , Str "is"
+      , Space
+      , Str "left"
+      , Space
+      , Str "as"
+      , Space
+      , Str "it"
+      , Space
+      , Str "was."
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Para [ Str "In" , Space , Str "a." ]
+      , Div
+          ( "" , [] , [] )
+          [ Para [ Str "In" , Space , Str "b." ]
+          , Div
+              ( "" , [] , [ ( "include" , "./a.md" ) ] )
+              [ Para [ Str "back" , Space , Str "to" , Space , Str "a" ]
+              ]
+          ]
+      ]
+  , Div
+      ( "" , [] , [ ( "include" , "doc.md" ) ] )
+      [ Para
+          [ Str "the"
+          , Space
+          , Str "main"
+          , Space
+          , Str "document"
+          , Space
+          , Str "itself"
+          ]
+      ]
+  , Para
+      [ Str "The"
+      , Space
+      , Str "same"
+      , Space
+      , Str "file"
+      , Space
+      , Str "twice,"
+      , Space
+      , Str "side"
+      , Space
+      , Str "by"
+      , Space
+      , Str "side,"
+      , Space
+      , Str "is"
+      , Space
+      , Str "no"
+      , Space
+      , Str "cycle."
+      ]
+  , Div
+      ( "" , [] , [] ) [ Para [ Str "In" , Space , Str "b2." ] ]
+  , Div
+      ( "" , [] , [] ) [ Para [ Str "In" , Space , Str "b2." ] ]
+  ]

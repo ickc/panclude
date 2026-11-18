@@ -1,0 +1,27 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # default is the latest pandoc 3.x; pandoc-min is the oldest supported
+        environment: [default, pandoc-min]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: prefix-dev/setup-pixi@ad1da6449d9e506fd127fd67ab2d054a769f6a94 # v0.11.2
+        with:
+          pixi-version: v0.83.0
+          environments: ${{ matrix.environment }}
+          locked: true
+      - run: pixi run -e ${{ matrix.environment }} pandoc --version
+      - run: pixi run -e ${{ matrix.environment }} test
