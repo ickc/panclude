@@ -10,11 +10,13 @@ panclude.lua: the include attribute, as a pandoc Lua filter.
     ::: {include="chapters/intro.md" shift-heading-level-by=1}
     :::
 
-A code block takes the file's text, verbatim; with raw="FORMAT" it becomes
-raw content; a div is filled with the file read as a document. A relative
-path starts at the directory of the file holding the element. When an
-include fails, the element is left as it was, with a warning in pandoc's
-log (so --fail-if-warnings makes it an error).
+The included content goes after what the element holds: a code block's
+text gets the file's text, verbatim; with raw="FORMAT" the block becomes
+raw content; a div gets the file's blocks, read as a document. What the
+element holds is not looked at. A relative path starts at the directory of
+the file holding the element. When an include fails, the element is left
+as it was, with a warning in pandoc's log (so --fail-if-warnings makes it
+an error).
 
 Run it before any other filter: pandoc -L panclude.lua ...
 
@@ -226,7 +228,17 @@ local function include_code(cb, ctx)
     end
     selected[#selected + 1] = line
   end
-  text = table.concat(selected, '\n')
+
+  -- Appended to the block's own text: its lines, then the file's. An
+  -- empty text has no lines, and neither has an empty file.
+  local own = cb.text
+  if own == '' then
+    text = table.concat(selected, '\n')
+  elseif #selected == 0 then
+    text = own
+  else
+    text = own .. '\n' .. table.concat(selected, '\n')
+  end
 
   if attrs.raw then return pandoc.RawBlock(attrs.raw, text) end
   cb.text = text
@@ -234,7 +246,8 @@ local function include_code(cb, ctx)
                           'end-line', 'dedent' }) do
     attrs[name] = nil
   end
-  if opts.startLine and not attrs.startFrom then
+  -- The source's numbers, when the file's lines are the block's first.
+  if opts.startLine and own == '' and not attrs.startFrom then
     attrs.startFrom = tostring(opts.startLine)
   end
   return cb
@@ -355,7 +368,10 @@ local function include_div(div, ctx)
   blocks = shift_headings(blocks, shift)
   blocks = rebase(blocks, directory_of(include))
 
-  div.content = blocks
+  -- Appended to the div's own blocks, whose includes are this file's.
+  local own = expand(div.content, ctx)
+  own:extend(blocks)
+  div.content = own
   attrs.include = nil
   attrs.format = nil
   attrs['shift-heading-level-by'] = nil
@@ -365,8 +381,10 @@ end
 ------------------------------------------------------------------------
 -- The walk
 
--- Top down, so that a div's placeholder is never looked into: it is
--- replaced when the include succeeds, and left as it was when it fails.
+-- Top down, so that a div's included content, already done, is not
+-- walked again. A div's own blocks are walked like any others: by
+-- include_div when its include succeeds, by the walk going on into the
+-- div when it fails.
 local function include_filter(ctx)
   return {
     traverse = 'topdown',
@@ -375,7 +393,8 @@ local function include_filter(ctx)
     end,
     Div = function(div)
       if div.attributes.include then
-        return (include_div(div, ctx) or div), false
+        local done = include_div(div, ctx)
+        if done then return done, false end
       end
     end,
   }

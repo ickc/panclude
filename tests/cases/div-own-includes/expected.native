@@ -1,0 +1,103 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "A"
+      , Space
+      , Str "div\8217s"
+      , Space
+      , Str "own"
+      , Space
+      , Str "blocks"
+      , Space
+      , Str "are"
+      , Space
+      , Str "the"
+      , Space
+      , Str "document\8217s:"
+      , Space
+      , Str "their"
+      , Space
+      , Str "includes"
+      , Space
+      , Str "are"
+      , Space
+      , Str "done,"
+      , Space
+      , Str "from"
+      , Space
+      , Str "the"
+      , SoftBreak
+      , Str "file"
+      , Space
+      , Str "holding"
+      , Space
+      , Str "the"
+      , Space
+      , Str "div,"
+      , Space
+      , Str "whether"
+      , Space
+      , Str "the"
+      , Space
+      , Str "div\8217s"
+      , Space
+      , Str "include"
+      , Space
+      , Str "succeeds"
+      , Space
+      , Str "or"
+      , Space
+      , Str "fails."
+      , Space
+      , Str "The"
+      , SoftBreak
+      , Str "div\8217s"
+      , Space
+      , Str "include"
+      , Space
+      , Str "comes"
+      , Space
+      , Str "first:"
+      , Space
+      , Str "the"
+      , Space
+      , Str "warnings"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file"
+      , Space
+      , Str "it"
+      , Space
+      , Str "includes"
+      , Space
+      , Str "come"
+      , SoftBreak
+      , Str "before"
+      , Space
+      , Str "those"
+      , Space
+      , Str "of"
+      , Space
+      , Str "its"
+      , Space
+      , Str "own"
+      , Space
+      , Str "blocks."
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ CodeBlock ( "" , [] , [] ) "code"
+      , CodeBlock
+          ( "" , [] , [ ( "include" , "missing-own.txt" ) ] )
+          "own text"
+      , Para [ Str "part" ]
+      , CodeBlock
+          ( "" , [] , [ ( "include" , "missing-in-part.txt" ) ] ) ""
+      ]
+  , Div
+      ( "" , [] , [ ( "include" , "missing.md" ) ] )
+      [ CodeBlock ( "" , [] , [] ) "code" ]
+  ]

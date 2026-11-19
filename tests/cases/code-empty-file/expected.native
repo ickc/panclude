@@ -60,4 +60,50 @@ Pandoc
       , Str "newline."
       ]
   , CodeBlock ( "" , [] , [] ) "\n"
+  , Para
+      [ Str "After"
+      , Space
+      , Str "text"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "block\8217s"
+      , Space
+      , Str "own,"
+      , Space
+      , Str "an"
+      , Space
+      , Str "empty"
+      , Space
+      , Str "file"
+      , Space
+      , Str "adds"
+      , Space
+      , Str "no"
+      , Space
+      , Str "line,"
+      , Space
+      , Str "and"
+      , Space
+      , Str "a"
+      , Space
+      , Str "file"
+      , Space
+      , Str "of"
+      , SoftBreak
+      , Str "one"
+      , Space
+      , Str "empty"
+      , Space
+      , Str "line"
+      , Space
+      , Str "adds"
+      , Space
+      , Str "one."
+      ]
+  , CodeBlock ( "" , [] , [] ) "own text"
+  , CodeBlock ( "" , [] , [] ) "own text\n"
+  , CodeBlock ( "" , [] , [] ) "own text\n\n"
   ]

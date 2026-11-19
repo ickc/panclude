@@ -23,7 +23,7 @@ Pandoc
       , Space
       , Str "and"
       , Space
-      , Str "placeholder,"
+      , Str "content,"
       , SoftBreak
       , Str "with"
       , Space

@@ -2,8 +2,8 @@
 
 One behaviour, two implementations: `panclude.lua`, a Lua filter for stock
 pandoc, run first; and a step built into libpandoc, named in the filter
-list. The attribute is `include`; a div's include fills the div; raw
-content is `raw=FORMAT` beside it.
+list. The attribute is `include`; the file's content goes after the
+element's own; raw content is `raw=FORMAT` beside it.
 
 This draft fixes the details both implementations must agree on. Points
 marked **(open)** may still change. Nothing is released.
@@ -11,8 +11,11 @@ marked **(open)** may still change. Nothing is released.
 ## 1. What is included
 
 An element pandoc's reader has parsed carries `include="PATH"`. The step
-replaces the element's content with the file's and never interprets the
-content beyond what the element says.
+appends the file's content to the element's own, and never interprets
+either beyond what the element says. It does not look at the element's
+own content: whatever consumes the element (the filter that owns its
+class) tells the two apart, if it needs to. Without the step, the element
+shows what it holds.
 
 A number in an attribute the step reads is a whole number written in
 decimal digits (`7`, `07`; `-1` only where said); anything else
@@ -22,37 +25,50 @@ decimal digits (`7`, `07`; `-1` only where said); anything else
 
 ````markdown
 ```{.haskell include="src/Main.hs" startLine=10 endLine=24 dedent=2}
-shown when the step does not run
+```
+
+```{.table include="sales.csv"}
+---
+caption: Sales by region
+---
 ```
 ````
 
-- The block's text becomes the file's text: read as UTF-8 (a byte order
-  mark at its start dropped), line endings as `\n` (CRLF and a lone CR
-  alike), the final newline dropped (a code block's text has none). A
-  file's lines are what the newlines separate, the final newline ending
-  the last line: an empty file has none, a file of one newline has one,
-  empty.
+- The file's text: read as UTF-8 (a byte order mark at its start
+  dropped), line endings as `\n` (CRLF and a lone CR alike), the final
+  newline dropped (a code block's text has none). A file's lines are what
+  the newlines separate, the final newline ending the last line: an empty
+  file has none, a file of one newline has one, empty.
+- It is appended to the block's text: an empty block's text becomes the
+  file's text; a block with text of its own keeps it, and the file's text
+  follows, after one `\n`: the block's lines, then the file's (own text
+  ending in a blank line keeps it, before the file's). An empty file has
+  no lines, so it adds none: the block's text stays its own. The block's
+  own text is not looked at (a YAML header for the filter owning the
+  class, a line of explanation): it is kept as it is.
 - `startLine`, `endLine` (also `start-line`, `end-line`; given both
   spellings, the hyphenated one is used, as include-code-files does):
-  lines counted from 1, both ends included; a number from 1. An
+  the file's lines counted from 1, both ends included; a number from 1. An
   `endLine` past the last line ends at the last line. A range that
   selects no line (a `startLine` past the last line or after `endLine`,
   any range of an empty file) is a failure; an empty file without a
   range is an empty block.
-- `dedent=N`: up to N leading spaces removed from each line; a number
-  from 0. Only spaces before the line's first other character count; a
-  tab is another character.
+- `dedent=N`: up to N leading spaces removed from each of the file's
+  lines (not the block's own); a number from 0. Only spaces before the
+  line's first other character count; a tab is another character.
 - These are pandoc-ext include-code-files' names, and its documents give
   the same result, but for where a relative path starts (section 2),
   `dedent` (include-code-files removes every space among a line's first
-  N characters, even after other text), and in corners that filter does
+  N characters, even after other text), a block with text of its own
+  (include-code-files replaces the text), and in corners that filter does
   not handle (its text keeps the final newline and any CR; a failure
   there empties the block; it sets `startFrom` over the block's own).
 - Afterwards `include`, the range (both spellings) and `dedent` are
-  removed from the block. With `startLine` and no `startFrom` of its own,
-  `startFrom` is set to it, as a number (`07` gives `7`), so that
-  `.numberLines` shows the source's numbers. (pandoc reads `startFrom`,
-  not `start-from`.)
+  removed from the block. With `startLine`, no `startFrom` of its own and
+  no text of its own, `startFrom` is set to it, as a number (`07` gives
+  `7`), so that `.numberLines` shows the source's numbers. (pandoc reads
+  `startFrom`, not `start-from`.) With text of its own, the file's first
+  line is not the block's: `startFrom` is not set.
 - Everything else on the block stays, so the filter that owns its class
   (a table from CSV, a diagram) sees a block that held the text all
   along.
@@ -66,24 +82,34 @@ shown when the step does not run
 ```
 ````
 
-The block is replaced by a raw block of that format holding the file's
-text (ranges and `dedent` as above). A raw block has no attributes: the
-code block's identifier, classes and other attributes go with it. An
-empty `raw` is a failure.
+The block is replaced by a raw block of that format holding the text the
+code block would get: its own text, then the file's (ranges and `dedent`
+as above). A raw block has no attributes: the code block's identifier,
+classes and other attributes go with it. An empty `raw` is a failure.
 
 ### A div: the file as a document
 
 ```markdown
 ::: {include="chapters/intro.md" shift-heading-level-by=1}
-shown when the step does not run
+:::
+
+::: {.theorem include="theorem.md"}
+[Pythagoras]{.info}
 :::
 ```
 
-- The file is read as a document and its blocks become the div's content,
-  in place of what was there. The div stays, without `include`, `format`
-  and `shift-heading-level-by`. The placeholder is never looked into: an
-  include inside it is not read, whether the div's include succeeds or
-  fails.
+- The file is read as a document and its blocks go after the div's own
+  **(open)**: a div holding blocks keeps them (a leading paragraph,
+  pandoc-amsthm's `[note]{.info}`), and one holding none gets the file's
+  alone. The div stays, without `include`, `format` and
+  `shift-heading-level-by`.
+- The div's own blocks are not looked at, but they are the document's:
+  an include in them is done as any other, from the file holding the div,
+  whether the div's include succeeds or fails, after it (so the warnings
+  of the file the div includes come before those of its own blocks).
+  `shift-heading-level-by` does not shift their headings; when the div is
+  itself in included content, their paths are rewritten with the rest of
+  that content.
 - **Format (open):** the div's `format` (as pandoc's `-f` takes it,
   extensions included) if given, with pandoc's defaults for that format;
   else, when the file's extension names a format other than markdown
@@ -195,9 +221,10 @@ nothing, text that is not UTF-8, a format pandoc does not know, a
 document that does not parse, a cycle, the depth limit, a URL, an empty
 path, a main document read from a URL:
 
-- **the element is left exactly as it was**, attribute and placeholder
-  (but for the rewriting of its path when it is inside included content,
-  section 1), and
+- **the element is left exactly as it was**, attributes and content,
+  nothing appended (but for the rewriting of its path when it is inside
+  included content, section 1, and a div's own includes, done as any
+  others), and
 - **a warning** through pandoc's log names the path, the reason, and the
   file holding the element **(open)**: so pandoc's
   `--fail-if-warnings` is the strict mode, and without it the document
@@ -252,7 +279,8 @@ the filter list, as `citeproc` is one: `-F panclude` on a command line,
 `./panclude`). The built-in runs where it is placed: after other
 filters, it leaves to them the elements as the reader made them, and
 libpandoc neither moves it nor warns. An element it handled no longer has
-`include`, so running it twice changes nothing, but for an element whose
+`include`, so running it twice changes nothing (the file's content is
+appended once), but for an element whose
 include failed, which the second run tries again (with a warning again;
 for a cycle or the depth limit, one level further).
 

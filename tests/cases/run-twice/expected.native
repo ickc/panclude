@@ -9,4 +9,36 @@ Pandoc
   , CodeBlock
       ( "" , [] , [ ( "include" , "missing.txt" ) ] )
       "placeholder"
+  , Para
+      [ Str "The"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "content"
+      , Space
+      , Str "is"
+      , Space
+      , Str "appended"
+      , Space
+      , Str "once."
+      ]
+  , CodeBlock ( "" , [] , [] ) "own text\ncode"
+  , Div
+      ( "" , [] , [] )
+      [ Para
+          [ Str "A"
+          , Space
+          , Str "paragraph"
+          , Space
+          , Str "of"
+          , Space
+          , Str "the"
+          , Space
+          , Str "div\8217s"
+          , Space
+          , Str "own."
+          ]
+      , Header 1 ( "part" , [] , [] ) [ Str "Part" ]
+      , CodeBlock ( "" , [] , [] ) "code"
+      ]
   ]

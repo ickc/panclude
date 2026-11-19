@@ -1,0 +1,3 @@
+panclude: cannot include "missing-in-part.txt" in part.md: not found
+panclude: cannot include "missing-own.txt" in doc.md: not found
+panclude: cannot include "missing.md" in doc.md: not found
