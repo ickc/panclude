@@ -1,0 +1,201 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "The"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "text"
+      , Space
+      , Str "goes"
+      , Space
+      , Str "after"
+      , Space
+      , Str "the"
+      , Space
+      , Str "block\8217s"
+      , Space
+      , Str "own,"
+      , Space
+      , Str "on"
+      , Space
+      , Str "a"
+      , Space
+      , Str "line"
+      , Space
+      , Str "of"
+      , Space
+      , Str "its"
+      , Space
+      , Str "own:"
+      , Space
+      , Str "the"
+      , SoftBreak
+      , Str "block\8217s"
+      , Space
+      , Str "text,"
+      , Space
+      , Str "a"
+      , Space
+      , Str "newline,"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file\8217s."
+      , Space
+      , Str "panclude"
+      , Space
+      , Str "does"
+      , Space
+      , Str "not"
+      , Space
+      , Str "look"
+      , Space
+      , Str "at"
+      , Space
+      , Str "the"
+      , SoftBreak
+      , Str "block\8217s"
+      , Space
+      , Str "text."
+      ]
+  , Para
+      [ Str "An"
+      , Space
+      , Str "empty"
+      , Space
+      , Str "block"
+      , Space
+      , Str "takes"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "text."
+      ]
+  , CodeBlock
+      ( "" , [ "table" ] , [] ) "region,sales\nnorth,10\nsouth,20"
+  , Para
+      [ Str "A"
+      , Space
+      , Str "block"
+      , Space
+      , Str "with"
+      , Space
+      , Str "text"
+      , Space
+      , Str "of"
+      , Space
+      , Str "its"
+      , Space
+      , Str "own"
+      , Space
+      , Str "keeps"
+      , Space
+      , Str "it."
+      ]
+  , CodeBlock
+      ( "sales" , [ "table" ] , [ ( "data-x" , "y" ) ] )
+      "A line of the block's own.\nregion,sales\nnorth,10\nsouth,20"
+  , Para
+      [ Str "A"
+      , Space
+      , Str "YAML"
+      , Space
+      , Str "header,"
+      , Space
+      , Str "then"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file:"
+      , Space
+      , Str "the"
+      , Space
+      , Str "filter"
+      , Space
+      , Str "owning"
+      , Space
+      , Str "the"
+      , Space
+      , Str "class"
+      , Space
+      , Str "splits"
+      , Space
+      , Str "them."
+      ]
+  , CodeBlock
+      ( "" , [ "table" ] , [] )
+      "---\ncaption: Sales by region\nheader: true\n---\nregion,sales\nnorth,10\nsouth,20"
+  , Para
+      [ Str "Text"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "block\8217s"
+      , Space
+      , Str "own"
+      , Space
+      , Str "ending"
+      , Space
+      , Str "in"
+      , Space
+      , Str "a"
+      , Space
+      , Str "blank"
+      , Space
+      , Str "line"
+      , Space
+      , Str "keeps"
+      , Space
+      , Str "it:"
+      , Space
+      , Str "a"
+      , Space
+      , Str "blank"
+      , Space
+      , Str "line"
+      , SoftBreak
+      , Str "before"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "text."
+      ]
+  , CodeBlock
+      ( "" , [ "table" ] , [] )
+      "---\ncaption: Sales by region\n---\n\nregion,sales\nnorth,10\nsouth,20"
+  , Para
+      [ Str "A"
+      , Space
+      , Str "failure"
+      , Space
+      , Str "leaves"
+      , Space
+      , Str "the"
+      , Space
+      , Str "block"
+      , Space
+      , Str "as"
+      , Space
+      , Str "it"
+      , Space
+      , Str "was,"
+      , Space
+      , Str "its"
+      , Space
+      , Str "own"
+      , Space
+      , Str "text"
+      , Space
+      , Str "too."
+      ]
+  , CodeBlock
+      ( "" , [ "table" ] , [ ( "include" , "missing.csv" ) ] )
+      "---\ncaption: Sales by region\n---"
+  ]

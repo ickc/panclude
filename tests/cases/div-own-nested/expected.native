@@ -1,0 +1,134 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "An"
+      , Space
+      , Str "included"
+      , Space
+      , Str "document\8217s"
+      , Space
+      , Str "own"
+      , Space
+      , Str "elements"
+      , Space
+      , Str "with"
+      , Space
+      , Str "content"
+      , Space
+      , Str "and"
+      , Space
+      , Str "includes:"
+      , Space
+      , Str "each"
+      , SoftBreak
+      , Str "gets"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "content"
+      , Space
+      , Str "after"
+      , Space
+      , Str "its"
+      , Space
+      , Str "own,"
+      , Space
+      , Str "its"
+      , Space
+      , Str "own"
+      , Space
+      , Str "includes"
+      , Space
+      , Str "are"
+      , Space
+      , Str "done"
+      , Space
+      , Str "from"
+      , SoftBreak
+      , Str "the"
+      , Space
+      , Str "file"
+      , Space
+      , Str "holding"
+      , Space
+      , Str "it,"
+      , Space
+      , Str "and"
+      , Space
+      , Str "its"
+      , Space
+      , Str "paths,"
+      , Space
+      , Str "own"
+      , Space
+      , Str "and"
+      , Space
+      , Str "included,"
+      , Space
+      , Str "are"
+      , Space
+      , Str "rewritten"
+      , Space
+      , Str "to"
+      , SoftBreak
+      , Str "name"
+      , Space
+      , Str "the"
+      , Space
+      , Str "same"
+      , Space
+      , Str "files"
+      , Space
+      , Str "from"
+      , Space
+      , Str "the"
+      , Space
+      , Str "main"
+      , Space
+      , Str "document\8217s"
+      , Space
+      , Str "directory."
+      ]
+  , Div
+      ( "" , [] , [] )
+      [ Div
+          ( "" , [] , [] )
+          [ Para
+              [ Str "A"
+              , Space
+              , Str "paragraph"
+              , Space
+              , Str "of"
+              , Space
+              , Str "a.md\8217s,"
+              , Space
+              , Str "with"
+              , Space
+              , Str "an"
+              , Space
+              , Str "image:"
+              , Space
+              , Image ( "" , [] , [] ) [] ( "parts/fig.png" , "" )
+              ]
+          , CodeBlock ( "" , [] , [] ) "a.md's own text\nx"
+          , CodeBlock
+              ( "" , [] , [ ( "include" , "parts/missing.txt" ) ] )
+              "a.md's own text"
+          , Para
+              [ Str "A"
+              , Space
+              , Str "paragraph"
+              , Space
+              , Str "of"
+              , Space
+              , Str "b.md\8217s:"
+              , Space
+              , Image ( "" , [] , [] ) [] ( "parts/sub/img.png" , "" )
+              ]
+          , CodeBlock ( "" , [] , [] ) "b.md's own text\ny"
+          ]
+      , CodeBlock ( "" , [] , [] ) "a.md's own text\nx"
+      ]
+  ]

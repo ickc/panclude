@@ -18,3 +18,9 @@
   messages, and the case files `roots` and `untrusted`.
 - `tools/port-include-files.lua` rewrites pandoc-ext/include-files'
   blocks into panclude's divs.
+- The included content is appended to what the element holds instead of
+  replacing it: a code block keeps its text (a YAML header of options for
+  the filter owning its class), the file's text after it, and a div its
+  blocks, the file's after them. panclude does not look at what the
+  element holds, so it needs to know nothing of how the element is
+  consumed, and without panclude the element shows what it holds.

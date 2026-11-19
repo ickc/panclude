@@ -7,3 +7,13 @@
 ```{include="missing.txt"}
 placeholder
 ```
+
+The file's content is appended once.
+
+```{include="x.txt"}
+own text
+```
+
+::: {include="part.md"}
+A paragraph of the div's own.
+:::

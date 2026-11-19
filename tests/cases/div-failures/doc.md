@@ -1,4 +1,4 @@
-Each failure leaves the div exactly as it was, attributes and placeholder,
+Each failure leaves the div exactly as it was, attributes and content,
 with a warning.
 
 ::: {#id .cls include="missing.md" shift-heading-level-by=1 format="markdown" data-x="y"}

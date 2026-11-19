@@ -2,7 +2,6 @@ The block becomes a raw block of that format, holding the file's text;
 its other attributes go with it.
 
 ```{#id .latex include="header.tex" raw="latex" data-x="y"}
-shown when the step does not run
 ```
 
 Ranges and dedent apply.

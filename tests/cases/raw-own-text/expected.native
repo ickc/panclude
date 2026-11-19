@@ -1,0 +1,62 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "With"
+      , Space
+      , Code ( "" , [] , [] ) "raw"
+      , Str ","
+      , Space
+      , Str "the"
+      , Space
+      , Str "raw"
+      , Space
+      , Str "block"
+      , Space
+      , Str "holds"
+      , Space
+      , Str "the"
+      , Space
+      , Str "same"
+      , Space
+      , Str "text:"
+      , Space
+      , Str "the"
+      , Space
+      , Str "block\8217s"
+      , Space
+      , Str "own,"
+      , Space
+      , Str "a"
+      , SoftBreak
+      , Str "newline,"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file\8217s."
+      ]
+  , RawBlock
+      (Format "latex")
+      "\\documentclass{article}\n\\usepackage{amsmath}\n\\usepackage{amsthm}"
+  , Para
+      [ Str "Ranges"
+      , Space
+      , Str "and"
+      , Space
+      , Code ( "" , [] , [] ) "dedent"
+      , Space
+      , Str "apply"
+      , Space
+      , Str "to"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "text"
+      , Space
+      , Str "only."
+      ]
+  , RawBlock
+      (Format "latex")
+      "    % the block's own, indented\n\\usepackage{amsthm}"
+  ]

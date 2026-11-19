@@ -7,34 +7,26 @@ Pandoc
       , Space
       , Str "blocks"
       , Space
-      , Str "fill"
+      , Str "go"
+      , Space
+      , Str "after"
       , Space
       , Str "the"
       , Space
-      , Str "div,"
+      , Str "div\8217s"
       , Space
-      , Str "in"
-      , Space
-      , Str "place"
-      , Space
-      , Str "of"
-      , Space
-      , Str "what"
-      , Space
-      , Str "was"
-      , Space
-      , Str "there;"
+      , Str "own;"
       , Space
       , Str "the"
       , Space
       , Str "div"
       , Space
       , Str "keeps"
-      , SoftBreak
+      , Space
       , Str "its"
       , Space
       , Str "identifier,"
-      , Space
+      , SoftBreak
       , Str "classes"
       , Space
       , Str "and"
@@ -51,15 +43,32 @@ Pandoc
       , Str ","
       , Space
       , Code ( "" , [] , [] ) "format"
-      , SoftBreak
-      , Str "and"
       , Space
+      , Str "and"
+      , SoftBreak
       , Code ( "" , [] , [] ) "shift-heading-level-by"
       , Str "."
       ]
   , Div
       ( "intro" , [ "chapter" ] , [ ( "lang" , "en" ) ] )
-      [ Header
+      [ Para
+          [ Str "The"
+          , Space
+          , Str "div\8217s"
+          , Space
+          , Str "own"
+          , Space
+          , Str "paragraph,"
+          , Space
+          , Str "before"
+          , Space
+          , Str "the"
+          , Space
+          , Str "file\8217s"
+          , Space
+          , Str "blocks."
+          ]
+      , Header
           1 ( "introduction" , [] , [] ) [ Str "Introduction" ]
       , Para
           [ Str "A"

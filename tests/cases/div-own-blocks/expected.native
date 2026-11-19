@@ -1,0 +1,249 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "The"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "blocks"
+      , Space
+      , Str "go"
+      , Space
+      , Str "after"
+      , Space
+      , Str "the"
+      , Space
+      , Str "div\8217s"
+      , Space
+      , Str "own."
+      , Space
+      , Str "panclude"
+      , Space
+      , Str "does"
+      , Space
+      , Str "not"
+      , Space
+      , Str "look"
+      , Space
+      , Str "at"
+      , Space
+      , Str "the"
+      , SoftBreak
+      , Str "div\8217s"
+      , Space
+      , Str "own"
+      , Space
+      , Str "blocks,"
+      , Space
+      , Str "but"
+      , Space
+      , Str "for"
+      , Space
+      , Str "their"
+      , Space
+      , Str "includes:"
+      , Space
+      , Code ( "" , [] , [] ) "shift-heading-level-by"
+      , Space
+      , Str "shifts"
+      , SoftBreak
+      , Str "the"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "headings"
+      , Space
+      , Str "only."
+      ]
+  , Div
+      ( "ch" , [ "chapter" ] , [] )
+      [ Header
+          2
+          ( "a-heading-of-the-divs-own" , [] , [] )
+          [ Str "A"
+          , Space
+          , Str "heading"
+          , Space
+          , Str "of"
+          , Space
+          , Str "the"
+          , Space
+          , Str "div\8217s"
+          , Space
+          , Str "own"
+          ]
+      , Para
+          [ Str "An"
+          , Space
+          , Str "introduction"
+          , Space
+          , Str "of"
+          , Space
+          , Str "the"
+          , Space
+          , Str "div\8217s"
+          , Space
+          , Str "own."
+          ]
+      , BulletList
+          [ [ Plain [ Str "a" , Space , Str "list" ] ]
+          , [ Plain
+                [ Str "of"
+                , Space
+                , Str "the"
+                , Space
+                , Str "div\8217s"
+                , Space
+                , Str "own"
+                ]
+            ]
+          ]
+      , Header
+          2
+          ( "a-chapter" , [] , [] )
+          [ Str "A" , Space , Str "chapter" ]
+      , Para
+          [ Str "The"
+          , Space
+          , Str "chapter\8217s"
+          , Space
+          , Str "text."
+          ]
+      ]
+  , Para
+      [ Str "A"
+      , Space
+      , Str "paragraph"
+      , Space
+      , Str "with"
+      , Space
+      , Str "a"
+      , Space
+      , Str "leading"
+      , Space
+      , Str "span,"
+      , Space
+      , Str "as"
+      , Space
+      , Str "pandoc-amsthm"
+      , Space
+      , Str "takes"
+      , Space
+      , Str "a"
+      , Space
+      , Str "theorem\8217s"
+      , SoftBreak
+      , Str "note:"
+      , Space
+      , Str "it"
+      , Space
+      , Str "stays"
+      , Space
+      , Str "the"
+      , Space
+      , Str "div\8217s"
+      , Space
+      , Str "first"
+      , Space
+      , Str "paragraph,"
+      , Space
+      , Str "and"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "blocks"
+      , Space
+      , Str "follow."
+      ]
+  , Div
+      ( "" , [ "theorem" ] , [] )
+      [ Para
+          [ Span ( "" , [ "info" ] , [] ) [ Str "Pythagoras" ] ]
+      , Para
+          [ Str "The"
+          , Space
+          , Str "square"
+          , Space
+          , Str "of"
+          , Space
+          , Str "the"
+          , Space
+          , Str "hypotenuse"
+          , Space
+          , Str "is"
+          , Space
+          , Str "the"
+          , Space
+          , Str "sum"
+          , Space
+          , Str "of"
+          , Space
+          , Str "the"
+          , Space
+          , Str "squares"
+          , Space
+          , Str "of"
+          , Space
+          , Str "the"
+          , Space
+          , Str "other"
+          , SoftBreak
+          , Str "two"
+          , Space
+          , Str "sides."
+          ]
+      ]
+  , Div
+      ( "" , [ "theorem" ] , [] )
+      [ Para
+          [ Span ( "" , [ "info" ] , [] ) [ Str "Pythagoras" ]
+          , Space
+          , Str "An"
+          , Space
+          , Str "introduction"
+          , Space
+          , Str "of"
+          , Space
+          , Str "the"
+          , Space
+          , Str "theorem\8217s"
+          , Space
+          , Str "own."
+          ]
+      , Para
+          [ Str "The"
+          , Space
+          , Str "square"
+          , Space
+          , Str "of"
+          , Space
+          , Str "the"
+          , Space
+          , Str "hypotenuse"
+          , Space
+          , Str "is"
+          , Space
+          , Str "the"
+          , Space
+          , Str "sum"
+          , Space
+          , Str "of"
+          , Space
+          , Str "the"
+          , Space
+          , Str "squares"
+          , Space
+          , Str "of"
+          , Space
+          , Str "the"
+          , Space
+          , Str "other"
+          , SoftBreak
+          , Str "two"
+          , Space
+          , Str "sides."
+          ]
+      ]
+  ]

@@ -1,0 +1,156 @@
+Pandoc
+  Meta { unMeta = fromList [] }
+  [ Para
+      [ Str "Ranges"
+      , Space
+      , Str "and"
+      , Space
+      , Code ( "" , [] , [] ) "dedent"
+      , Space
+      , Str "apply"
+      , Space
+      , Str "to"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "text"
+      , Space
+      , Str "only;"
+      , Space
+      , Str "the"
+      , Space
+      , Str "block\8217s"
+      , Space
+      , Str "own"
+      , Space
+      , Str "text"
+      , SoftBreak
+      , Str "stays"
+      , Space
+      , Str "as"
+      , Space
+      , Str "it"
+      , Space
+      , Str "is."
+      ]
+  , CodeBlock
+      ( "" , [] , [] )
+      "    the block's own, indented\nline 2\nline 3"
+  , Para
+      [ Str "With"
+      , Space
+      , Code ( "" , [] , [] ) ".numberLines"
+      , Space
+      , Str "and"
+      , Space
+      , Str "no"
+      , Space
+      , Str "text"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "block\8217s"
+      , Space
+      , Str "own,"
+      , Space
+      , Code ( "" , [] , [] ) "startFrom"
+      , Space
+      , Str "is"
+      , Space
+      , Str "set"
+      , SoftBreak
+      , Str "to"
+      , Space
+      , Code ( "" , [] , [] ) "startLine"
+      , Str ","
+      , Space
+      , Str "so"
+      , Space
+      , Str "that"
+      , Space
+      , Str "the"
+      , Space
+      , Str "lines"
+      , Space
+      , Str "show"
+      , Space
+      , Str "the"
+      , Space
+      , Str "source\8217s"
+      , Space
+      , Str "numbers."
+      ]
+  , CodeBlock
+      ( "" , [ "numberLines" ] , [ ( "startFrom" , "4" ) ] )
+      "line 4\nline 5"
+  , Para
+      [ Str "With"
+      , Space
+      , Str "text"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "block\8217s"
+      , Space
+      , Str "own"
+      , Space
+      , Str "before"
+      , Space
+      , Str "the"
+      , Space
+      , Str "file\8217s"
+      , Space
+      , Str "lines,"
+      , Space
+      , Str "it"
+      , Space
+      , Str "is"
+      , Space
+      , Str "not"
+      , Space
+      , Str "set."
+      ]
+  , CodeBlock
+      ( "" , [ "numberLines" ] , [] ) "own text\nline 4\nline 5"
+  , Para
+      [ Str "A"
+      , Space
+      , Code ( "" , [] , [] ) "startFrom"
+      , Space
+      , Str "of"
+      , Space
+      , Str "the"
+      , Space
+      , Str "block\8217s"
+      , Space
+      , Str "own"
+      , Space
+      , Str "stays,"
+      , Space
+      , Str "with"
+      , Space
+      , Str "text"
+      , Space
+      , Str "of"
+      , Space
+      , Str "its"
+      , Space
+      , Str "own"
+      , Space
+      , Str "or"
+      , Space
+      , Str "not."
+      ]
+  , CodeBlock
+      ( "" , [ "numberLines" ] , [ ( "startFrom" , "10" ) ] )
+      "own text\nline 4\nline 5"
+  , CodeBlock
+      ( "" , [ "numberLines" ] , [ ( "startFrom" , "10" ) ] )
+      "line 4\nline 5"
+  ]

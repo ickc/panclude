@@ -1,8 +1,8 @@
 # panclude
 
 One `include` attribute for pandoc documents. An element that pandoc's
-reader has already parsed says which file its content comes from, and
-panclude fills it in:
+reader has already parsed names a file, and panclude appends the file's
+content to what the element holds:
 
 ````markdown
 ```{.haskell include="src/Main.hs" startLine=10 endLine=24}
@@ -15,12 +15,12 @@ panclude fills it in:
 :::
 ````
 
-- **A code block** takes the file's text, verbatim. Whichever filter owns
-  the block's class (a table from CSV, a diagram) then sees a block that
-  held the text all along.
+- **A code block** gets the file's text, verbatim, after its own.
+  Whichever filter owns the block's class (a table from CSV, a diagram)
+  then sees a block that held the text all along.
 - **A code block with `raw="FORMAT"`** becomes raw content for that output
   format.
-- **A div** is filled with the file read as a document.
+- **A div** gets the file's blocks, read as a document, after its own.
 
 **Status: a draft.** [SPEC.md](SPEC.md) is the specification being worked
 out; `panclude.lua` implements it, and `tests/cases/` holds the cases
@@ -51,18 +51,19 @@ once: a second run changes nothing but retries what failed.
 
 ````markdown
 ```{.python .numberLines include="src/main.py" startLine=10 endLine=24 dedent=4}
-shown when panclude does not run
 ```
 ````
 
-The block's text becomes the file's text, verbatim (as UTF-8, with `\n`
-line endings, without its final newline). `startLine` and `endLine`
-(also `start-line`, `end-line`) choose lines, counted from 1, both
-included; `dedent=N` removes up to N leading spaces of each line. These
-attributes and `include` go; everything else stays, and `startFrom` is
-set to `startLine` unless the block has its own, so that `.numberLines`
-counts as the source does. A filter owning the class sees an ordinary
-block:
+An empty block's text becomes the file's text, verbatim (as UTF-8, with
+`\n` line endings, without its final newline); a block with text of its
+own keeps it, and the file's text follows on the next line (below).
+`startLine` and `endLine` (also `start-line`, `end-line`) choose the
+file's lines, counted from 1, both included; `dedent=N` removes up to N
+leading spaces of each of them. These attributes and `include` go;
+everything else stays. When the file's lines are the block's first (no
+text of its own) and the block has no `startFrom`, `startFrom` is set to
+`startLine`, so that `.numberLines` counts as the source does. A filter
+owning the class sees an ordinary block:
 
 ````markdown
 ```{.table include="data.csv"}
@@ -76,19 +77,19 @@ block:
 ```
 ````
 
-The block becomes a raw block of that format, holding the file's text
-(ranges and `dedent` as above).
+The block becomes a raw block of that format, holding the text the code
+block would get (its own, then the file's; ranges and `dedent` as
+above).
 
 ### A div: a file read as a document
 
 ```markdown
 ::: {#intro .chapter include="chapters/intro.md" shift-heading-level-by=1}
-shown when panclude does not run
 :::
 ```
 
-The file's blocks fill the div; the div keeps its identifier, classes and
-other attributes. The file is read
+The file's blocks go after the div's own; the div keeps its identifier,
+classes and other attributes. The file is read
 
 - as the div's `format` says (as `-f` takes it: `format="org"`,
   `format="markdown-smart"`);
@@ -108,6 +109,38 @@ is rewritten to name the same file from the main document's directory:
 `![](fig.png)` in `chapters/intro.md` becomes `![](chapters/fig.png)`.
 URLs, absolute paths and `#fragments` are left alone.
 
+### Content of the element's own
+
+panclude appends: what the element holds stays, before the included
+content. It does not look at that content, so whatever consumes the
+element tells the two apart. A table filter's options, as a YAML header,
+stay with the block, and the data comes from the file:
+
+````markdown
+```{.table include="sales.csv"}
+---
+caption: Sales by region
+header: true
+---
+```
+````
+
+The block's text is then the header, a newline, then `sales.csv`'s text;
+the filter owning `.table` splits them as it would if the data had been
+written in the block. A div keeps its leading paragraph, and the file's
+blocks follow:
+
+```markdown
+::: {.theorem include="pythagoras.md"}
+[Pythagoras]{.info}
+:::
+```
+
+Without panclude, the element shows what it holds. An empty file adds
+nothing; `startLine`, `endLine`, `dedent` and `shift-heading-level-by`
+apply to the included content only. An include inside a div's own blocks
+is done as any other, from the file holding the div.
+
 ### Paths
 
 A relative path starts at the directory of the file holding the element:
@@ -119,7 +152,7 @@ includes. A path is used as written: no globs, no `~`, no URLs.
 
 A missing file, a range that selects nothing, text that is not UTF-8, a
 format pandoc cannot read, a cycle: the element is left exactly as it
-was, placeholder and all, and a warning goes to pandoc's log, naming the
+was, its content and all, and a warning goes to pandoc's log, naming the
 path, the file holding it and the reason, never the file's content:
 
 ```
@@ -142,7 +175,7 @@ an error, run pandoc with `--fail-if-warnings`.
 
 ### From pandoc-ext/include-code-files
 
-Its documents work unchanged and give the same result, but for two
+Its documents work unchanged and give the same result, but for three
 deliberate differences:
 
 - **A relative path starts at the including file's directory**, not at
@@ -152,6 +185,9 @@ deliberate differences:
   include-code-files removes every space among a line's first N
   characters, even after other text (`x   y` with `dedent=4` becomes
   `xy`).
+- **A block with text keeps it**, and the file's text follows;
+  include-code-files replaces the block's text with the file's. For an
+  empty block, the usual case, the two agree.
 
 And in corners: panclude drops the file's final newline (include-code-files
 keeps it, which shows as an empty last line in HTML) and any CR, keeps a
@@ -221,8 +257,8 @@ them.
   element does: in a list, a block quote, a table cell.
 - Nothing needs escaping. To show the syntax in a document, put it in a
   code block: nothing looks inside one.
-- Without panclude the document still reads: the element shows whatever
-  placeholder it holds.
+- Without panclude the document still reads: the element shows what it
+  holds, and panclude only adds to it.
 - Including is one step, done first. A filter that needs a file's content
   does not have to read files itself.
 
