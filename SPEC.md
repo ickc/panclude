@@ -98,11 +98,10 @@ classes and other attributes go with it. An empty `raw` is a failure.
 :::
 ```
 
-- The file is read as a document and its blocks go after the div's own
-  **(open)**: a div holding blocks keeps them (a leading paragraph,
-  pandoc-amsthm's `[note]{.info}`), and one holding none gets the file's
-  alone. The div stays, without `include`, `format` and
-  `shift-heading-level-by`.
+- The file is read as a document and its blocks go after the div's own:
+  a div holding blocks keeps them (a leading paragraph, pandoc-amsthm's
+  `[note]{.info}`), and one holding none gets the file's alone. The div
+  stays, without `include`, `format` and `shift-heading-level-by`.
 - The div's own blocks are not looked at, but they are the document's:
   an include in them is done as any other, from the file holding the div,
   whether the div's include succeeds or fails, after it (so the warnings
