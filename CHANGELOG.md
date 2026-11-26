@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Under Quarto, a relative path starts at the directory of the page being
+  rendered, `quarto.doc.input_file`, rather than at that of the temporary
+  copy Quarto runs pandoc on, where every relative include failed
+  ([#6](https://github.com/ickc/panclude/issues/6)). Stock pandoc is
+  unchanged.
 - `panclude.lua`, the Lua filter for stock pandoc 3.2 or later: the
   `include` attribute on a code block (the file's text, with `startLine`,
   `endLine` and `dedent`), on a code block with `raw="FORMAT"` (raw

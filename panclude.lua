@@ -101,7 +101,9 @@ end
 -- paths start at, its name in messages, how deep it is, and the files
 -- including it (for cycles).
 local function main_context()
-  local first = PANDOC_STATE.input_files[1]
+  -- Quarto runs pandoc on a temporary copy of the page it renders, and
+  -- names the page itself in quarto.doc.input_file.
+  local first = (quarto and quarto.doc and quarto.doc.input_file) or PANDOC_STATE.input_files[1]
   local cwd = pandoc.system.get_working_directory()
   if not first or first == '-' then
     return { dir = '.', name = 'standard input', depth = 0, chain = {}, cwd = cwd }

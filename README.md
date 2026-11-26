@@ -148,6 +148,12 @@ the main document's (its first input file's, with several), the
 working directory for standard input, an included file's for its own
 includes. A path is used as written: no globs, no `~`, no URLs.
 
+Under [Quarto](https://quarto.org), which runs pandoc on a temporary copy
+of the page it renders, the main document is the page itself, which Quarto
+names in `quarto.doc.input_file`. List the filter in the page's or the
+project's `filters:`, and its paths start at the page's directory, as they
+would under pandoc.
+
 ### Failures
 
 A missing file, a range that selects nothing, text that is not UTF-8, a

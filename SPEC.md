@@ -175,7 +175,9 @@ heading, an image, a link, ...) is left alone, without a warning.
   element: for the main document, its first input file's (pandoc joins
   several input files into one document before any filter runs, so
   which one an element came from is not known), or the working directory
-  when it comes from standard input.
+  when it comes from standard input. Under Quarto, which runs pandoc on a
+  temporary copy of the page it renders, the main document is the page
+  itself, `quarto.doc.input_file`, not the copy.
 - A path is taken as written: no globs, no `~`. A URL (a scheme of two
   letters or more, then `:`, such as `https:` or `file:`) is a failure,
   and so is an empty path. When the main document is itself read from a
